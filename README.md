@@ -1,5 +1,9 @@
 # Final Project C1
 
+## Deployed Apps
+* main: https://ap2022-c1-master.herokuapp.com/
+* staging: on-progress
+
 ## Sprint X
 
 This is release notes.
