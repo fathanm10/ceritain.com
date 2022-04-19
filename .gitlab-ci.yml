@@ -6,10 +6,10 @@ stages:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
-Deploy_master:
+Deploy_main:
   stage: deploy
   only:
-    - master
+    - main
   image: ruby:latest
   before_script:
     - gem install dpl
