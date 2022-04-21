@@ -7,11 +7,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping(path = "/reading-list")
 public class ReadingListController {
-//    @RequestMapping(method = RequestMethod.GET, value = "/")
-//    @ResponseBody
-//    private String helloWorld() {
-//        return "Reading List Landing Page";
-//    }
 
     @GetMapping(value = "/")
     public String readingList(Model model) {
@@ -26,6 +21,11 @@ public class ReadingListController {
     @GetMapping(value = "/edit")
     public String editReadingList(Model model) {
         return "reading_list_edit";
+    }
+
+    @GetMapping(value = "/view")
+    public String viewReadingList(Model model) {
+        return "reading_list_view";
     }
 
     @GetMapping(value = "/add-cerita")
