@@ -6,17 +6,17 @@ stages:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
-Deploy_main:
+Deploy_staging:
   stage: deploy
   only:
-    - main
+    - staging
   image: ruby:latest
   before_script:
     - gem install dpl
     - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
   script:
     - dpl --provider=heroku
-      --app=$HEROKU_APP_NAME
+      --app=$HEROKU_APP_NAME_STAGING
       --api-key=$HEROKU_API_KEY
     - export HEROKU_API_KEY=$HEROKU_API_KEY
-    - heroku run --app $HEROKU_APP_NAME migrate
+    - heroku run --app $HEROKU_APP_NAME_STAGING migrate
