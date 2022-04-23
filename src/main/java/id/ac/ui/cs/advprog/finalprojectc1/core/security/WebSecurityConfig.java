@@ -24,12 +24,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/cerita/registration/**")
+                    .antMatchers("/cerita/registration")
                     .permitAll()
                 .anyRequest()
                 .authenticated().and()
-                .formLogin()
-                .defaultSuccessUrl("/cerita/registration/logged",true);
+                .formLogin();
     }
 
     @Override
