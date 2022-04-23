@@ -2,7 +2,7 @@
 
 ## Deployed Apps
 * main: https://ap2022-c1-master.herokuapp.com/
-* staging: https://ap2022-c1-staging.herokuapp.com/
+* staging: on-progress
 
 ## Sprint X
 
