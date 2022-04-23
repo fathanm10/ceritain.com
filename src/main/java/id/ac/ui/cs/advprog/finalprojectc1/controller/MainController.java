@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping(path = "")
 public class MainController {
     @RequestMapping(method = RequestMethod.GET, value = "/")
-    @ResponseBody
-    private String helloWorld() {
-        return "Hello World";
+    private String landingPage() {
+        return "landingpage";
     }
 }
 
