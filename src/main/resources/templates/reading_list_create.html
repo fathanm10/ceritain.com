@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Buat Reading List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header class="p-5"></header>
+    <h1 class="text-center font-bold text-3xl my-3">Buat Reading List</h1>
+    <div class="container flex justify-center items-center mx-auto mt-20">
+        <form method="post" class="w-full">
+            <div class="pb-10">
+                <label for="readingListName" class="form-label font-bold">Judul:</label>
+                <input type="text" class="w-full px-3 py-2 my-2 border" id="readingListName" required>
+                <label for="readingListDesc" class="form-label font-bold">Deskripsi:</label>
+                <textarea class="w-full px-3 py-2 my-2 border" id="readingListDesc" maxlength="800" rows="10"
+                    style="resize: none;"></textarea>
+            </div>
+            <div class="text-center"><button type="submit"
+                    class="bg-[#345875] hover:bg-[#0F3B5E] text-white py-2 px-4 rounded">Simpan</button></div>
+        </form>
+    </div>
+    <footer class="p-5"></footer>
+</body>
+
+</html>
