@@ -6,12 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(path = "/profile")
-public class ProfileController {
-
-//    @RequestMapping(method = RequestMethod.GET, value = "")
-//    private String home(){
-//        return "profile";
-//    }
+public class UserProfileController {
 
     @GetMapping(value = "")
     public String profile(Model model){
