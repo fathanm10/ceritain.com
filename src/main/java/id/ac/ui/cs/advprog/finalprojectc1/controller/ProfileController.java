@@ -8,11 +8,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/profile")
 public class ProfileController {
 
-//    @RequestMapping(method = RequestMethod.GET, value = "")
-//    private String home(){
-//        return "profile";
-//    }
-
     @GetMapping(value = "")
     public String profile(Model model){
         return "profile";
