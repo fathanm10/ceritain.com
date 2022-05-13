@@ -9,32 +9,54 @@
 
 <body>
     <header class="p-5"></header>
-    <h1 class="text-center font-bold text-3xl my-3">Kumpulan Cerita Seru</h1>
-    <div class="flex justify-center items-center mx-auto mt-10">
-        <form method="post" class="w-full">
-            <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-6 py-2 px-3">
-                <label class="form-check-label col-span-4 mx-auto">Review Game: Cthulhu Menyelamatkan Dunia: Edisi
-                    Kejuaraan Super Hyper Enhanced Alpha Diamond DX Plus Alpha FES HD</label>
-                <div class="flex justify-center"><button type="submit"
-                        class="bg-[#e43c3c] hover:bg-[#913636] text-white py-2 px-4 rounded">Hapus</button></div>
-                <div class="flex justify-center"><button type="submit"
-                        class="bg-[#4CC0E4] hover:bg-[#2F9DBF] text-white py-2 px-4 rounded">Baca</button></div>
-            </div>
-            <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-6 py-2 px-3">
-                <label class="form-check-label col-span-4 mx-auto">1001 Malam dan 1001 Inkonsistensinya</label>
-                <div class="flex justify-center"><button type="submit"
-                        class="bg-[#e43c3c] hover:bg-[#913636] text-white py-2 px-4 rounded">Hapus</button></div>
-                <div class="flex justify-center"><button type="submit"
-                        class="bg-[#4CC0E4] hover:bg-[#2F9DBF] text-white py-2 px-4 rounded">Baca</button></div>
-            </div>
-            <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-6 py-2 px-3">
-                <label class="form-check-label col-span-4 mx-auto">Apakah Mungkin untuk Hidup di Planet Lain?</label>
-                <div class="flex justify-center"><button type="submit"
-                        class="bg-[#e43c3c] hover:bg-[#913636] text-white py-2 px-4 rounded">Hapus</button></div>
-                <div class="flex justify-center"><button type="submit"
-                        class="bg-[#4CC0E4] hover:bg-[#2F9DBF] text-white py-2 px-4 rounded">Baca</button></div>
-            </div>
-        </form>
+    <div th:if="${readingList} != null">
+        <h1 class="text-center font-bold text-3xl my-3" th:text="${readingList.getJudul()}"></h1>
+        <h3 class="text-center font-thin text-lg italic my-3 mx-20" th:text="${readingList.getDeskripsi()}"></h3>
+        <div class="flex justify-center items-center mx-auto mt-10">
+            <form method="post" class="w-full">
+                <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-6 py-2 px-3">
+                    <label class="form-check-label col-span-4 mx-auto">Review Game: Cthulhu Menyelamatkan Dunia: Edisi
+                        Kejuaraan Super Hyper Enhanced Alpha Diamond DX Plus Alpha FES HD</label>
+                    <div class="flex justify-center">
+                        <button type="submit"
+                                class="bg-[#e43c3c] hover:bg-[#913636] text-white py-2 px-4 rounded">Hapus
+                        </button>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit"
+                                class="bg-[#4CC0E4] hover:bg-[#2F9DBF] text-white py-2 px-4 rounded">Baca
+                        </button>
+                    </div>
+                </div>
+                <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-6 py-2 px-3">
+                    <label class="form-check-label col-span-4 mx-auto">1001 Malam dan 1001 Inkonsistensinya</label>
+                    <div class="flex justify-center">
+                        <button type="submit"
+                                class="bg-[#e43c3c] hover:bg-[#913636] text-white py-2 px-4 rounded">Hapus
+                        </button>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit"
+                                class="bg-[#4CC0E4] hover:bg-[#2F9DBF] text-white py-2 px-4 rounded">Baca
+                        </button>
+                    </div>
+                </div>
+                <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-6 py-2 px-3">
+                    <label class="form-check-label col-span-4 mx-auto">Apakah Mungkin untuk Hidup di Planet
+                        Lain?</label>
+                    <div class="flex justify-center">
+                        <button type="submit"
+                                class="bg-[#e43c3c] hover:bg-[#913636] text-white py-2 px-4 rounded">Hapus
+                        </button>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit"
+                                class="bg-[#4CC0E4] hover:bg-[#2F9DBF] text-white py-2 px-4 rounded">Baca
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <footer class="p-5"></footer>
 </body>
