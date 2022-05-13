@@ -1,7 +1,6 @@
 package id.ac.ui.cs.advprog.finalprojectc1.model;
 
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
