@@ -1,30 +1,64 @@
 package id.ac.ui.cs.advprog.finalprojectc1.controller;
 
+
 import id.ac.ui.cs.advprog.finalprojectc1.core.registration.RegistrationRequest;
 import id.ac.ui.cs.advprog.finalprojectc1.service.RegistrationService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping(path = "cerita/registration")
+
+import javax.validation.Valid;
+
+@Controller
 @AllArgsConstructor
 public class UserRegistrationController {
 
     private RegistrationService registrationService;
 
-    @PostMapping
-    public String register (@RequestBody RegistrationRequest request){
-        return registrationService.register(request);
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 
-    @GetMapping(path = "/confirm/{token}")
+    @PostMapping("/registration")
+    public String register(Model model,@Valid RegistrationRequest req, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            model.addAttribute("registerReq",req);
+            return "registration";
+
+        }
+        registrationService.register(req);
+        return "reg_success";
+
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder){
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
+
+    @GetMapping("/registration")
+    public String register (Model model){
+        model.addAttribute("registerReq", new RegistrationRequest());
+        return "registration";
+    }
+
+    @GetMapping(path = "/registration/confirm/{token}")
     public String confirm(@PathVariable(value = "token") String token){
-        return registrationService.confirmToken(token);
+        registrationService.confirmToken(token);
+        return "verify_email";
     }
 
     @GetMapping( path = "/logged")
     public String logged() {
-        return "Login successful";
+        return "login_success";
     }
 
 
