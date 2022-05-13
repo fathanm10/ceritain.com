@@ -39,19 +39,34 @@ public class ReadingListController {
         return "reading_list_edit";
     }
 
+    @PostMapping(value = "/edit/{command}")
+    public String editReadingList(@PathVariable String command,
+                                  @RequestParam (value="id") int readinglistId,
+                                  @RequestParam (value="judul") String judul,
+                                  @RequestParam (value="deskripsi") String deskripsi,
+                                  Model model) {
+        ReadingList readingList = null;
+        if (command.equals("save")) {
+            readingList = readingListService.updateReadingList(readinglistId,judul,deskripsi);
+        } else if (command.equals("delete")) {
+            readingListService.deleteReadingList(readinglistId);
+        }
+        model.addAttribute("readingList", readingList);
+        return String.format("redirect:/reading-list/view/%d",readinglistId);
+    }
+
     @GetMapping(value = "/view/{readinglistId}")
     public String viewReadingList(@PathVariable(required=false) int readinglistId,
                                   Model model) {
         var readingList = readingListService.getReadingListById(readinglistId);
         model.addAttribute("readingList", readingList);
-        System.out.println(readingList.getId());
-        System.out.println(readingList.getJudul());
-        System.out.println(readingList.getDeskripsi());
         return "reading_list_view";
     }
 
     @GetMapping(value = "/add-cerita")
     public String addCerita(Model model) {
+        var allReadingList = readingListService.getAllReadingList();
+        model.addAttribute("allReadingList", allReadingList);
         return "reading_list_add_cerita";
     }
 

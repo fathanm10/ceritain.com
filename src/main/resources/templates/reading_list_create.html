@@ -11,7 +11,7 @@
     <header class="p-5"></header>
     <h1 class="text-center font-bold text-3xl my-3">Buat Reading List</h1>
     <div class="container flex justify-center items-center mx-auto mt-20">
-        <div th:if"${newReadingList != null}">
+        <div th:if="${newReadingList != null}">
             <form th:object="${newReadingList}" th:action="@{/reading-list/new-readinglist}" method="post"
                   class="w-full">
                 <div class="pb-10">

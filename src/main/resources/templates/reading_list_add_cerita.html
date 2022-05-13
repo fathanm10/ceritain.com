@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8" />
@@ -12,21 +12,10 @@
     <h5 class="text-center font-bold text-3xl my-3">Tambah Cerita ke Reading List</h5>
     <div class="flex justify-center items-center mx-auto mt-10">
         <form method="post" class="w-full">
-            <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-4 gap-4 py-2">
-                <label class="form-check-label col-span-3 mx-auto">Kumpulan Cerita Seru</label>
+            <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-4 gap-4 py-2" th:each="readingList : ${allReadingList}">
+                <label class="form-check-label col-span-3 mx-auto" th:text="${readingList.getJudul()}"></label>
                 <div class="flex justify-center"><button type="submit"
-                        class="bg-[#E08958] hover:bg-[#7a4a2f] text-white py-2 px-4 rounded">Tambah</button></div>
-            </div>
-            <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-4 gap-4 py-2">
-                <label class="form-check-label col-span-3 mx-auto">Wawancara dan Dokumentari, Pelajaran yang Dihindari,
-                    Masa yang Kelam</label>
-                <div class="flex justify-center"><button type="submit"
-                        class="bg-[#E08958] hover:bg-[#7a4a2f] text-white py-2 px-4 rounded">Tambah</button></div>
-            </div>
-            <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-4 gap-4 py-2">
-                <label class="form-check-label col-span-3 mx-auto">Bacaan to Begal to</label>
-                <div class="flex justify-center"><button type="submit"
-                        class="bg-[#E08958] hover:bg-[#7a4a2f] text-white py-2 px-4 rounded">Tambah</button></div>
+                        class="bg-[#E08958] hover:bg-[#7a4a2f] text-white py-2 px-4 rounded" th:name="id" th:value="${readingList.getId()}">Tambah</button></div>
             </div>
         </form>
     </div>

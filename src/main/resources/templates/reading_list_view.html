@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8" />
@@ -13,7 +13,7 @@
         <h1 class="text-center font-bold text-3xl my-3" th:text="${readingList.getJudul()}"></h1>
         <h3 class="text-center font-thin text-lg italic my-3 mx-20" th:text="${readingList.getDeskripsi()}"></h3>
         <div class="flex justify-center items-center mx-auto mt-10">
-            <form method="post" class="w-full">
+            <form method="post" class="w-full" action="/reading-list/edit">
                 <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-6 py-2 px-3">
                     <label class="form-check-label col-span-4 mx-auto">Review Game: Cthulhu Menyelamatkan Dunia: Edisi
                         Kejuaraan Super Hyper Enhanced Alpha Diamond DX Plus Alpha FES HD</label>

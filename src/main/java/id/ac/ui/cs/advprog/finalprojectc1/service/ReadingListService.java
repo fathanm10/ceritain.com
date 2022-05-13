@@ -5,6 +5,8 @@ import id.ac.ui.cs.advprog.finalprojectc1.repository.ReadingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReadingListService {
 
@@ -19,8 +21,26 @@ public class ReadingListService {
         return readingListRepository.save(readinglist);
     }
 
-
     public ReadingList getReadingListById(int readinglistId) {
         return readingListRepository.getById(readinglistId);
+    }
+
+    public ReadingList updateReadingList(int readinglistId, String judul, String deskripsi) {
+        var readingList = getReadingListById(readinglistId);
+        readingList.setJudul(judul);
+        readingList.setDeskripsi(deskripsi);
+        System.out.println(readinglistId);
+        System.out.println("New judul: "+judul);
+        System.out.println("New deskripsi: "+deskripsi);
+        return readingListRepository.save(readingList);
+    }
+
+    public void deleteReadingList(int readinglistId) {
+        var readingList = getReadingListById(readinglistId);
+        readingListRepository.delete(readingList);
+    }
+
+    public List<ReadingList> getAllReadingList() {
+        return readingListRepository.findAll();
     }
 }
