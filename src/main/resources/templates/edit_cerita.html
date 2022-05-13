@@ -10,14 +10,15 @@
 <body>
 <div class="d-flex pt-3 flex-column justify-content-center align-items-center">
     <h2>Edit Ceritamu</h2>
-    <form class="w-50">
+    <form class="w-50" th:object="${cerita}" th:action="@{/cerita/edit-cerita/{id}(id=${cerita.getId()})}" method="post">
         <div class="mb-3">
             <label for="judul" class="form-label">Judul</label>
-            <input type="text" class="form-control" id="judul">
+            <input type="text" class="form-control" id="judul" th:value="${cerita.getJudulCerita()}" th:field="*{judulCerita}">
         </div>
         <div class="mb-3">
             <label for="cerita" class="form-label">Ceritamu</label>
-            <textarea class="form-control" id="cerita" rows="15"></textarea>
+            <textarea class="form-control" id="cerita" rows="15"
+                      th:inline="text" th:field="*{isiCerita}">[[${cerita.getIsiCerita()}]]</textarea>
         </div>
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
