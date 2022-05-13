@@ -24,7 +24,7 @@ public class ReadingListController {
         return "reading_list_create";
     }
 
-    @PostMapping(value = "/new-readinglist")
+    @PostMapping(value = "/create")
     public String createReadingList(@RequestParam String judul,
                                     @RequestParam String deskripsi) {
         var readinglist = readingListService.createReadingList(judul,deskripsi);
@@ -52,7 +52,7 @@ public class ReadingListController {
             readingListService.deleteReadingList(readinglistId);
         }
         model.addAttribute("readingList", readingList);
-        return String.format("redirect:/reading-list/view/%d",readinglistId);
+        return "redirect:/reading-list/add-cerita";
     }
 
     @GetMapping(value = "/view/{readinglistId}")

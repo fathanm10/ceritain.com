@@ -18,6 +18,8 @@ public class ReadingListService {
                 .judul(judul)
                 .deskripsi(deskripsi)
                 .build();
+        System.out.println("createReadingList:");
+        loggerReadingList(readinglist.getId(),judul,deskripsi);
         return readingListRepository.save(readinglist);
     }
 
@@ -29,18 +31,26 @@ public class ReadingListService {
         var readingList = getReadingListById(readinglistId);
         readingList.setJudul(judul);
         readingList.setDeskripsi(deskripsi);
-        System.out.println(readinglistId);
-        System.out.println("New judul: "+judul);
-        System.out.println("New deskripsi: "+deskripsi);
+        System.out.println("updateReadingList:");
+        loggerReadingList(readinglistId,judul,deskripsi);
         return readingListRepository.save(readingList);
     }
 
     public void deleteReadingList(int readinglistId) {
         var readingList = getReadingListById(readinglistId);
+        System.out.println("deleteReadingList:");
+        loggerReadingList(readinglistId,readingList.getJudul(),readingList.getDeskripsi());
         readingListRepository.delete(readingList);
     }
 
     public List<ReadingList> getAllReadingList() {
         return readingListRepository.findAll();
+    }
+
+    public void loggerReadingList(int readinglistId, String judul, String deskripsi) {
+        System.out.println(readinglistId);
+        System.out.println("Judul: "+judul);
+        System.out.println("Deskripsi: "+deskripsi);
+        System.out.println();
     }
 }
