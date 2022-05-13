@@ -21,6 +21,7 @@ public class RegistrationService {
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
 
+
     public String register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.
                 test(request.getEmail());
@@ -39,7 +40,7 @@ public class RegistrationService {
                 )
         );
 
-        String link = "http://localhost:8080/cerita/registration/confirm/" + token;
+        String link = "https://ap2022-c1-staging.herokuapp.com/registration/confirm/" + token;
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getName(), link));
@@ -67,7 +68,7 @@ public class RegistrationService {
         confirmationTokenService.setConfirmedAt(token);
         appUserService.enableAppUser(
                 confirmationToken.getAppUser().getEmail());
-        return "email verified, please continue to: http://localhost:8080/login";
+        return "email verified, please continue to: https://ap2022-c1-staging.herokuapp.com/login";
     }
 
     private String buildEmail(String name, String link) {
