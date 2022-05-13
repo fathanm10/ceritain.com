@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Registration</title>
+	<link rel="stylesheet"
+		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		  crossorigin="anonymous">
+</head>
+<body>
+
+<!-- create navigation bar ( header) -->
+<header class="text-gray-600 body-font">
+	<div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+		<a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+			<span class="ml-3 text-xl">CERITAIN.COM</span>
+		</a>
+
+	</div>
+</header>
+
+<br>
+<br>
+<!-- Create HTML registration form -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+
+			<!-- success message -->
+			<div th:if="${param.success}">
+				<div class="alert alert-info">Please confirm Your Email</div>
+			</div>
+
+			<h1>Registration</h1>
+
+			<form th:action="@{/registration}" method="post" th:object="${registerReq}">
+
+				<div class="form-group">
+					<label class="control-label" for="name"> Name </label> <input
+						name="name" id="name" class="form-control" th:field="*{name}"
+						required autofocus="autofocus" />
+
+				</div>
+
+				<div class="form-group">
+					<label class="control-label" for="email"> Email </label>
+					<input name="email" id="email" class="form-control" type="email" th:field="*{email}"
+						 autofocus="autofocus" />
+
+				</div>
+
+				<div class="form-group">
+					<label class="control-label" for="password"> Password </label> <input
+						name="password" id="password" class="form-control" type="password"
+						th:field="*{password}" autofocus="autofocus" />
+
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-success">Register</button>
+					<span>Already registered? <a href="/" th:href="@{/login}">Login
+								here</a></span>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

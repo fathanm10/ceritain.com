@@ -1,18 +1,27 @@
 package id.ac.ui.cs.advprog.finalprojectc1.core.registration;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
+@Data
 @Getter
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
 public class RegistrationRequest {
 
+    @NotBlank(message = "Name cannot be empty!")
+    private  String name;
 
-    private final String name;
-    private final String email;
-    private final String password;
+    @NotBlank(message = "Enter your email")
+    @Email(message = "email is invalid")
+    private  String email;
+
+    private  String password;
+
+    // for model attribute
+    public RegistrationRequest() {
+
+    }
 }
