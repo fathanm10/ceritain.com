@@ -22,14 +22,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/cerita/registration/**")
+                    .antMatchers("/registration/**")
                     .permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .formLogin()
-                .defaultSuccessUrl("/cerita/registration/logged",true);
+                .loginPage("/login")
+                .permitAll()
+                .defaultSuccessUrl("/logged",true);
     }
 
     @Override
