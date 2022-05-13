@@ -14,7 +14,9 @@
 </a>
 <div class="d-flex w-75 mx-auto mt-4 flex-column">
     <h3 th:text="${cerita.getJudulCerita()}"></h3>
-    <span>Ini Author | <span>Ini tanggal dibuat</span></span>
+    <span>Ini Author | Created at <span th:text="${cerita.getCreatedAt()}"></span> <span
+            th:if="${cerita.getUpdatedAt() != null}"> | Updated at <span
+            th:text="${cerita.getUpdatedAt()}"></span></span> </span>
     <p class="mt-4" th:text="${cerita.getIsiCerita()}">
     </p>
     <div class="text-center mt-5">

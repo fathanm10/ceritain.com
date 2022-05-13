@@ -5,6 +5,7 @@ import id.ac.ui.cs.advprog.finalprojectc1.repository.CeritaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ public class CeritaServiceImpl implements CeritaService {
     @Override
     public Cerita createCerita(String judul, String isi) {
         Cerita cerita = Cerita.builder().judulCerita(judul).isiCerita(isi).build();
+        cerita.setCreatedAt(new Date());
         return ceritaRepository.save(cerita);
     };
 
@@ -35,6 +37,7 @@ public class CeritaServiceImpl implements CeritaService {
         Cerita cerita = getCeritaById(id);
         judulOpt.ifPresent(cerita::setJudulCerita);
         isiOpt.ifPresent(cerita::setIsiCerita);
+        cerita.setUpdatedAt(new Date());
         return ceritaRepository.save(cerita);
     };
 
