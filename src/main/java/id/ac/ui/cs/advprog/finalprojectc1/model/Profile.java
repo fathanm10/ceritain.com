@@ -35,12 +35,8 @@ public class Profile {
     @Column(name = "url")
     private String url;
 
-//    @Lob
-//    @Column(name = "photo")
-//    private String photo;
-
-//    @Column(name = "photo", nullable = true)
-//    private String photo;
+    @Column(name = "photo")
+    private String linkPhoto;
 
 
 

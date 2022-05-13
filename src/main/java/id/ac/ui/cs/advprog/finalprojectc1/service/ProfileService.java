@@ -20,7 +20,7 @@ public class ProfileService {
 //    public void saveProfileToDB(MultipartFile file, String firstName, String lastName,
 //                                String email, String username, String bio){
     public int saveProfileToDB(String firstName, String lastName,
-            String email, String username, String bio){
+            String email, String username, String bio, String linkPhoto){
         Profile profile = new Profile();
 //        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 //        if (fileName.contains("..")){
@@ -38,6 +38,7 @@ public class ProfileService {
         profile.setUsername(username);
         profile.setBio(bio);
         profile.setUrl("http://ceritain.com/@"+username);
+        profile.setLinkPhoto(linkPhoto);
 
         profileRepository.save(profile);
         return profile.getId();

@@ -37,7 +37,7 @@ public class UserProfileController {
     }
 
     @PostMapping(value = "")
-    public String saveProfile(Model model){
+    public String createProfile(Model model){
         return "redirect:/profile/edit";
     }
 
@@ -48,10 +48,10 @@ public class UserProfileController {
     }
 
     @PostMapping(value = "/edit")
-    public String editProfilePost(@RequestParam(value = "firstName") String firstName,
+    public String editProfilePost(@RequestParam(value = "linkPhoto") String linkPhoto, @RequestParam(value = "firstName") String firstName,
                               @RequestParam(value = "lastName") String lastName, @RequestParam(value = "email") String email,
                               @RequestParam(value = "username") String username, @RequestParam(value = "bio") String bio){
-        int id = profileService.saveProfileToDB(firstName, lastName, email, username, bio);
+        int id = profileService.saveProfileToDB(firstName, lastName, email, username, bio, linkPhoto);
         return "redirect:/profile/" + id;
     }
 
