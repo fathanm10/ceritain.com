@@ -8,9 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface SearchPageRepository extends JpaRepository <Cerita, String>{
-    @Query("SELECT judulCerita, isiCerita, createdAt From Cerita")
+    @Query("SELECT judulCerita, isiCerita, createdAt From Cerita WHERE judulCerita LIKE %?1%" + " OR isiCerita LIKE %?1%")
     public List<Cerita> search(String keyword);
 
-    public Cerita findByName(String name);
-
 }
+
