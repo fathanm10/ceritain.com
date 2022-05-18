@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.finalprojectc1.controller;
-import id.ac.ui.cs.advprog.finalprojectc1.core.ReadingList;
+import id.ac.ui.cs.advprog.finalprojectc1.model.ReadingList;
 import id.ac.ui.cs.advprog.finalprojectc1.service.ReadingListService;
+import id.ac.ui.cs.advprog.finalprojectc1.service.ReadingListServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

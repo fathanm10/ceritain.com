@@ -1,4 +1,4 @@
-package id.ac.ui.cs.advprog.finalprojectc1.core;
+package id.ac.ui.cs.advprog.finalprojectc1.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
