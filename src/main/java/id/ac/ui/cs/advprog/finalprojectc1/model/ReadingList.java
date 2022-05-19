@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Builder
@@ -17,13 +17,20 @@ import javax.persistence.*;
 public class ReadingList {
 
     @Id
-    @Column
+    @Column(name="readinglist_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column
+    @Column(name="readinglist_judul")
     private String judul;
 
-    @Column
+    @Column(name="readinglist_deskripsi")
     private String deskripsi;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "readinglist_listcerita",
+            joinColumns = @JoinColumn(name = "readinglist_id"),
+            inverseJoinColumns = @JoinColumn(name = "cerita_id"))
+    private Set<Cerita> ceritaSet;
 }

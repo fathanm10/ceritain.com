@@ -17,6 +17,7 @@
     <span>Ini Author | Created at <span th:text="${cerita.getCreatedAt()}"></span> <span
             th:if="${cerita.getUpdatedAt() != null}"> | Updated at <span
             th:text="${cerita.getUpdatedAt()}"></span></span> </span>
+    <a th:href="@{/reading-list/add-cerita/{id}(id=${cerita.getId()})}">Tambahkan ke Reading List</a>
     <p class="mt-4" th:text="${cerita.getIsiCerita()}">
     </p>
     <div class="text-center mt-5">

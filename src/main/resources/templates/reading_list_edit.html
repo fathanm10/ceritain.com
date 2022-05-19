@@ -10,30 +10,28 @@
 <body>
     <header class="p-5"></header>
     <h1 class="text-center font-bold text-3xl my-3">Edit Reading List</h1>
-    <div th:if="${readingList} != null">
+    <div th:if="${readingList} != null" class="container justify-center items-center mx-auto mt-20">
         <h2 class="text-center font-medium text-1xl my-3" th:text="${readingList.getJudul()}"></h2>
-        <div class="container flex justify-center items-center mx-auto mt-20">
-            <form method="post" class="w-full" th:object="${readingList}" th:action="@{/reading-list/edit}">
-                <div class="pb-10">
-                    <input type="hidden" id="readingListId" th:name="id" th:value="${readingList.getId()}">
-                    <label for="readingListName" class="form-label font-bold">Judul:</label>
-                    <input type="text" class="w-full px-3 py-2 my-2 border" id="readingListName" required th:name="judul" th:field="*{judul}">
-                    <label for="readingListDesc" class="form-label font-bold">Deskripsi:</label>
-                    <textarea class="w-full px-3 py-2 my-2 border" id="readingListDesc" maxlength="800" rows="10"
-                              style="resize: none;" th:name="deskripsi" th:text="${readingList.getDeskripsi()}"></textarea>
-                </div>
-                <div class="text-center">
-                    <button type="submit"
-                            class="bg-[#345875] hover:bg-[#0F3B5E] text-white py-2 px-4 font-medium rounded" th:formaction="@{save}">
-                        Simpan
-                    </button>
-                    <button type="submit"
-                            class="bg-[#ea312c] hover:bg-[#b62622] text-white py-2 px-4 font-medium rounded" th:formaction="@{delete}">
-                        Hapus
-                    </button>
-                </div>
-            </form>
-        </div>
+        <form method="post" class="w-full" th:object="${readingList}" th:action="@{/reading-list/edit}">
+            <div class="pb-10">
+                <input type="hidden" id="readingListId" th:name="id" th:value="${readingList.getId()}">
+                <label for="readingListName" class="form-label font-bold">Judul:</label>
+                <input type="text" class="w-full px-3 py-2 my-2 border" id="readingListName" required th:name="judul" th:field="*{judul}">
+                <label for="readingListDesc" class="form-label font-bold">Deskripsi:</label>
+                <textarea class="w-full px-3 py-2 my-2 border" id="readingListDesc" maxlength="800" rows="10"
+                          style="resize: none;" th:name="deskripsi" th:text="${readingList.getDeskripsi()}"></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit"
+                        class="bg-[#345875] hover:bg-[#0F3B5E] text-white py-2 px-4 font-medium rounded" th:formaction="@{save}">
+                    Simpan
+                </button>
+                <button type="submit"
+                        class="bg-[#ea312c] hover:bg-[#b62622] text-white py-2 px-4 font-medium rounded" th:formaction="@{delete}">
+                    Hapus
+                </button>
+            </div>
+        </form>
     </div>
     <footer class="p-5"></footer>
 </body>

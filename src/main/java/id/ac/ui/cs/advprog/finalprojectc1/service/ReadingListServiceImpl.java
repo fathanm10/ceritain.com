@@ -13,6 +13,9 @@ public class ReadingListServiceImpl implements ReadingListService {
     @Autowired
     ReadingListRepository readingListRepository;
 
+    @Autowired
+    CeritaService ceritaService;
+
     public ReadingList createReadingList(String judul, String deskripsi) {
         var readinglist = ReadingList.builder()
                 .judul(judul)
@@ -41,4 +44,19 @@ public class ReadingListServiceImpl implements ReadingListService {
         return readingListRepository.findAll();
     }
 
+    public ReadingList updateCerita(int readinglistId, String ceritaId, String cmd) {
+        var cerita = ceritaService.getCeritaById(ceritaId);
+        var readingList = getReadingListById(readinglistId);
+        var ceritaSet = readingList.getCeritaSet();
+        if (cmd.equals("add")) {
+            if (ceritaSet.contains(cerita)) {
+                return null;
+            }
+            ceritaSet.add(cerita);
+        } else if (cmd.equals("delete")) {
+            ceritaSet.remove(cerita);
+        }
+        readingList.setCeritaSet(ceritaSet);
+        return readingListRepository.save(readingList);
+    }
 }

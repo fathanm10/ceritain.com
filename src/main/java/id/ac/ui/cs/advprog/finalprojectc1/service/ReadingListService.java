@@ -10,4 +10,5 @@ public interface ReadingListService {
     ReadingList updateReadingList(int readinglistId, String judul, String deskripsi);
     void deleteReadingList(int readinglistId);
     List<ReadingList> getAllReadingList();
+    ReadingList updateCerita(int readinglistId, String ceritaId, String cmd);
 }
