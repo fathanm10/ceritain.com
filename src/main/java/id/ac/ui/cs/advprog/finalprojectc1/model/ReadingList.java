@@ -33,4 +33,12 @@ public class ReadingList {
             joinColumns = @JoinColumn(name = "readinglist_id"),
             inverseJoinColumns = @JoinColumn(name = "cerita_id"))
     private Set<Cerita> ceritaSet;
+
+    public void removeCerita(Cerita cerita) {
+        ceritaSet.remove(cerita);
+    }
+
+    public void addCerita(Cerita cerita) {
+        ceritaSet.add(cerita);
+    }
 }

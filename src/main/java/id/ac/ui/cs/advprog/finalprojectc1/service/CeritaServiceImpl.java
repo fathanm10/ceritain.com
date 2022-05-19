@@ -2,6 +2,7 @@ package id.ac.ui.cs.advprog.finalprojectc1.service;
 
 import id.ac.ui.cs.advprog.finalprojectc1.model.Cerita;
 import id.ac.ui.cs.advprog.finalprojectc1.repository.CeritaRepository;
+import id.ac.ui.cs.advprog.finalprojectc1.repository.ReadingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ public class CeritaServiceImpl implements CeritaService {
 
     @Autowired
     CeritaRepository ceritaRepository;
+
+    @Autowired
+    ReadingListRepository readingListRepository;
 
     @Override
     public Cerita createCerita(String judul, String isi) {
@@ -44,4 +48,13 @@ public class CeritaServiceImpl implements CeritaService {
     @Override
     public void deleteCerita(String id) {ceritaRepository.deleteById(id);}
 
+    @Override
+    public void deleteCeritaFromAllReadingList(String ceritaId) {
+        var readingListAll = readingListRepository.findAll();
+        var cerita = getCeritaById(ceritaId);
+        readingListAll.forEach(readingList -> {
+            readingList.removeCerita(cerita);
+            readingListRepository.save(readingList);
+        });
+    }
 }

@@ -64,7 +64,6 @@ public class ReadingListController {
     public String viewReadingList(@PathVariable(required=false) int readinglistId,
                                   Model model) {
         var readingList = readingListService.getReadingListById(readinglistId);
-        var cerita = readingList.getCeritaSet();
         model.addAttribute(READINGLISTMODEL, readingList);
         return "reading_list_view";
     }
@@ -86,10 +85,10 @@ public class ReadingListController {
         return "redirect:/reading-list/view/"+readinglistId;
     }
 
-    @PostMapping(value = "/delete-cerita")
-    public String deleteCerita(@RequestParam (value="id") int readinglistId,
+    @PostMapping(value = "/remove-cerita")
+    public String removeCerita(@RequestParam (value="id") int readinglistId,
                                @RequestParam (value="ceritaId") String ceritaId) {
-        readingListService.updateCerita(readinglistId, ceritaId, "delete");
+        readingListService.updateCerita(readinglistId, ceritaId, "remove");
         return "redirect:/reading-list/view/"+readinglistId;
     }
 }

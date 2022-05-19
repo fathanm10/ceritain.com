@@ -46,6 +46,7 @@ public class CeritaController {
 
     @GetMapping(value = "delete-cerita/{ceritaId}")
     public String deleteCerita(@PathVariable String ceritaId) {
+        ceritaService.deleteCeritaFromAllReadingList(ceritaId);
         ceritaService.deleteCerita(ceritaId);
         return "redirect:/cerita";
     }
