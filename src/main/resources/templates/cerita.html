@@ -14,13 +14,13 @@
 </a>
 <div class="d-flex w-75 mx-auto mt-4 flex-column">
     <h3 th:text="${cerita.getJudulCerita()}"></h3>
-    <span>Ini Author | Created at <span th:text="${cerita.getCreatedAt()}"></span> <span
+    <span><span th:text="${cerita.getCreator()}"></span> | Created at <span th:text="${cerita.getCreatedAt()}"></span> <span
             th:if="${cerita.getUpdatedAt() != null}"> | Updated at <span
             th:text="${cerita.getUpdatedAt()}"></span></span> </span>
     <p class="mt-4" th:text="${cerita.getIsiCerita()}">
     </p>
     <div class="text-center mt-5">
-        <a th:href="@{delete-cerita/{id}(id=${cerita.getId()})}">
+        <a th:if="${cerita.getCreator().equals(currentUsername)}" th:href="@{delete-cerita/{id}(id=${cerita.getId()})}">
             <button class="btn btn-danger">Hapus Cerita</button>
         </a>
     </div>

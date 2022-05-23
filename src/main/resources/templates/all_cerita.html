@@ -24,7 +24,7 @@
     <h5 class="text-left lh-lg">Edit All Cerita</h5>
     <table class="table table-striped my-2">
         <tbody>
-        <tr th:each="cerita : ${AllCerita}">
+        <tr th:each="cerita : ${UserCerita}">
             <td>
                 <a th:href="@{/cerita/edit-cerita/{id}(id=${cerita.getId()})}" th:text="${cerita.getJudulCerita()}"></a>
             </td>
