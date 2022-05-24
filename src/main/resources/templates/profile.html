@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Profile Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<header class="text-gray-600 body-font">
+<header th:replace="fragments/navbar :: navbar"></header>
+<div class="text-gray-600 body-font">
 
     <div class="container mx-auto p-10">
 
@@ -23,29 +24,45 @@
                     </div>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form th:action="@{/profile}" method="POST">
+                    <form th:action="@{/profile}" method="POST" enctype="multipart/form-data">
                         <div class="shadow overflow-hidden sm:rounded-md">
                             <div class="px-4 py-5 bg-white sm:p-6">
                                 <div class="grid grid-cols-6 gap-6">
                                     <div class="col-span-6 sm:col-span-3">
-                                        <label th:for="first-name" class="block text-sm font-medium text-gray-700">First Name</label>
-                                        <span th:for="first-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"> Joseph </span>
+                                        <label th:for="first-name" class="block text-sm font-medium text-gray-700">First
+                                            Name</label>
+                                        <span th:if="${user == null}" th:for="first-name"
+                                              class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"> [Belum terisi] </span>
+                                        <span th:unless="${user == null}" th:for="first-name"
+                                              class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"
+                                              th:text="${user.firstName}"></span>
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-3">
-                                        <label th:for="last-name" class="block text-sm font-medium text-gray-700">Last Name</label>
-                                        <span th:for="last-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"> Cooper </span>
+                                        <label th:for="last-name" class="block text-sm font-medium text-gray-700">Last
+                                            Name</label>
+                                        <span th:if="${user == null}" th:for="last-name"
+                                              class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"> [Belum terisi] </span>
+                                        <span th:unless="${user == null}" th:for="last-name"
+                                              class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"
+                                              th:text="${user.lastName}"></span>
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-4">
-                                        <label th:for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                                        <span th:for="email" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"> cooper.joseph@gmail.com </span>
+                                        <label th:for="email" class="block text-sm font-medium text-gray-700">Email
+                                            Address</label>
+                                        <span th:if="${user == null}" th:for="email"
+                                              class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"> [Belum terisi] </span>
+                                        <span th:unless="${user == null}" th:for="email"
+                                              class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"
+                                              th:text="${user.email}"></span>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
 
@@ -62,60 +79,85 @@
                     </div>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form th:action="@{/profile/edit}" method="POST">
+                    <form th:action="@{/profile}" method="POST" enctype="multipart/form-data">
                         <div class="shadow sm:rounded-md sm:overflow-hidden">
                             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                 <div class="grid grid-cols-3 gap-6">
                                     <div class="col-span-3 sm:col-span-2">
-                                        <label th:for="username" class="block text-sm font-medium text-gray-700"> Username </label>
+                                        <label th:for="username" class="block text-sm font-medium text-gray-700">
+                                            Username </label>
                                         <div class="mt-1 flex rounded-md shadow-sm">
-                                            <span th:for="username" class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"> jcooper </span>
+                                            <span th:if="${user == null}" th:for="username"
+                                                  class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"> [Belum terisi] </span>
+                                            <span th:unless="${user == null}" th:for="username"
+                                                  class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"
+                                                  th:text="${user.username}"></span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="grid grid-cols-3 gap-6">
                                     <div class="col-span-3 sm:col-span-2">
-                                        <label th:for="url" class="block text-sm font-medium text-gray-700"> URL </label>
+                                        <label th:for="url" class="block text-sm font-medium text-gray-700">
+                                            URL </label>
                                         <div class="mt-1 flex rounded-md shadow-sm">
-                                            <span th:for="url" class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"> http://ceritain.com/@jcooper </span>
+                                            <span th:if="${user == null}" th:for="url"
+                                                  class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"> [Belum terisi] </span>
+                                            <span th:unless="${user == null}" th:for="url"
+                                                  class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"
+                                                  th:text="'http://ceritain.com/@'+${user.username}"></span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div>
                                     <label th:for="bio" class="block text-sm font-medium text-gray-700"> Bio </label>
-                                    <div th:for="bio" rows="3" class="mt-1 text-sm shadow-md items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at mi consectetur, bibendum enim et, porta velit. Suspendisse placerat laoreet pharetra. Duis sodales turpis vel lobortis viverra.
+                                    <div th:if="${user == null}" th:for="bio" rows="3"
+                                         class="mt-1 text-sm shadow-md items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at mi
+                                        consectetur, bibendum enim et, porta velit. Suspendisse placerat laoreet
+                                        pharetra. Duis sodales turpis vel lobortis viverra.
+                                    </div>
+                                    <div th:unless="${user == null}" th:for="bio" rows="3"
+                                         class="mt-1 text-sm shadow-md items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"
+                                         th:text="${user.bio}">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700"> Photo </label>
+                                        <div class="mt-1 flex items-center">
+                                        <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+
+                                            <img th:if="${user == null}"
+                                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcv62WGNzop3RKy2h5EFE-NF2NWHnKQrHb7A&usqp=CAU">
+                                            <img th:unless="${user == null}" th:src="${user.linkPhoto}">
+                                            <!--                        <img th:src="${'data:image/jpeg;base64,'+{user.photo}}"-->
+                                            alt=""
+                                            class="h-12 w-12 object-cover">
+
+                                        </span>
+
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700"> Photo </label>
-                                    <div class="mt-1 flex items-center">
-                    <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcv62WGNzop3RKy2h5EFE-NF2NWHnKQrHb7A&usqp=CAU"
-                        alt=""
-                        class="h-12 w-12 object-cover">
-
-                    </span>
-
-                                    </div>
+                                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                    <button type="submit"
+                                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Edit
+                                    </button>
                                 </div>
                             </div>
-                            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit</button>
-                            </div>
-                        </div>
                     </form>
+
                 </div>
             </div>
 
         </div>
 
+
     </div>
-</header>
+</div>
 
 </body>
 </html>

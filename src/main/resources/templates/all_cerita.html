@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Cerita</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<header th:replace="fragments/navbar :: navbar"></header>
+<div th:if="${AllCerita} != null">
+    <a th:href="@{/cerita/add-cerita}" class="bg-[#345875] hover:bg-[#0F3B5E] text-white py-2 px-4 rounded">Buat
+        Cerita</a>
+    <h5 class="my-5 text-lg">Read All Cerita</h5>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Judul
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Penulis
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Tanggal Dibuat
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 cursor-pointer hover:bg-[#dfeffa]"
+                th:each="cerita : ${AllCerita}">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                    <a th:href="@{/cerita/{id}(id=${cerita.getId()})}" th:text="${cerita.getJudulCerita()}"></a>
+                </th>
+                <td class="px-6 py-4" th:text="${cerita.getCreator()}">
+                </td>
+                <td class="px-6 py-4" th:text="${cerita.getCreatedAt()}">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h5 class="my-5 text-lg">Edit All Cerita</h5>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Judul
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Penulis
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Tanggal Dibuat
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 cursor-pointer hover:bg-[#dfeffa]"
+                th:each="cerita : ${UserCerita}">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"><a
+                        th:href="@{/cerita/edit-cerita/{id}(id=${cerita.getId()})}" th:text="${cerita.getJudulCerita()}"></a>
+                </th>
+                <td class="px-6 py-4" th:text="${cerita.getCreator()}">
+                </td>
+                <td class="px-6 py-4" th:text="${cerita.getCreatedAt()}">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

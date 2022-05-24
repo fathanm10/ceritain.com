@@ -2,42 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Add Cerita</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Cerita</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-<img src="https://cdn.discordapp.com/attachments/866848939886247948/966599675509637201/BackButton.png"
-     class="ms-5 mt-5" alt="back-button" width="53px" height="53px" style="cursor: pointer">
-<div class="d-flex w-75 mx-auto mt-4 flex-column">
-    <h3>Ini Judul Cerita</h3>
-    <span>Ini Author | <span>Ini tanggal dibuat</span></span>
-    <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget lacinia justo. Proin volutpat,
-        tortor at mollis
-        posuere, ex magna fringilla nibh, non pharetra purus arcu eget dui. Donec mauris urna, imperdiet in facilisis
-        id, dapibus at orci. Proin condimentum, mi blandit ornare eleifend, velit ipsum sollicitudin eros, eu varius
-        erat orci quis leo. Aliquam erat volutpat. Nulla feugiat mi ac est malesuada, vitae pellentesque est bibendum.
-        Nulla at sapien nec eros pharetra sodales. Donec fringilla, neque ut varius malesuada, lectus sapien cursus
-        mauris, vel interdum nunc velit id lacus. Nunc facilisis neque eu diam vestibulum condimentum a vel ex. In
-        accumsan, sem ut elementum porta, urna odio pharetra lectus, vitae aliquam diam nibh a nulla. Sed at tincidunt
-        ligula, vel iaculis lorem. <br><br>
-
-        Phasellus justo dolor, placerat et varius pellentesque, imperdiet vitae sem. Donec facilisis, libero in laoreet
-        blandit, urna augue dignissim justo, in tempus sem eros eu arcu. Suspendisse turpis augue, placerat vitae mauris
-        non, mollis venenatis nunc. Aliquam sed egestas ex. Proin vel nisi metus. Phasellus ultricies pulvinar tortor id
-        molestie. Maecenas maximus non libero sed posuere. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas. Ut non varius diam, sed aliquam diam. Curabitur placerat, lacus vitae
-        venenatis viverra, dui libero efficitur mauris, volutpat sodales dui justo et velit. Suspendisse fringilla metus
-        efficitur leo commodo, nec tempor sapien pharetra. Ut eu nulla bibendum lacus eleifend vulputate egestas eget
-        lorem.
+<header th:replace="fragments/navbar :: navbar"></header>
+<a href="/cerita" width="53px" height="53px" class="inline">
+    <img src="https://cdn.discordapp.com/attachments/866848939886247948/966599675509637201/BackButton.png"
+         class="ml-8 mt-8" alt="back-button" width="53px" height="53px" style="cursor: pointer">
+</a>
+<div class="flex w-3/4 mx-auto mt-4 flex-col">
+    <h3 class="text-4xl font-bold" th:text="${cerita.getJudulCerita()}"></h3>
+    <span class="text-base font-light"><span th:text="${cerita.getCreator()}"></span> | Created at <span
+            th:text="${cerita.getCreatedAt()}"></span> <span
+            th:if="${cerita.getUpdatedAt() != null}"> | Updated at <span
+            th:text="${cerita.getUpdatedAt()}"></span></span> </span>
+    <p class="mt-4 text-base" th:text="${cerita.getIsiCerita()}">
     </p>
     <div class="text-center mt-5">
-        <button class="btn btn-danger">Hapus Cerita</button>
+        <a th:if="${cerita.getCreator().equals(currentUsername)}" th:href="@{delete-cerita/{id}(id=${cerita.getId()})}">
+            <button type="button"
+                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                Hapus Cerita
+            </button>
+        </a>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
 	<meta charset="ISO-8859-1">
 	<title>Registration</title>
 	<link rel="stylesheet"
@@ -11,14 +12,6 @@
 <body>
 
 <!-- create navigation bar ( header) -->
-<header class="text-gray-600 body-font">
-	<div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-		<a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-			<span class="ml-3 text-xl">CERITAIN.COM</span>
-		</a>
-
-	</div>
-</header>
 
 <br>
 <br>
@@ -27,16 +20,18 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 
+			<h1>Registration</h1>
+
 			<!-- success message -->
 			<div th:if="${param.success}">
+
 				<div class="alert alert-info">Registration Successfull, Please Check Your Email</div>
 			</div>
-
-			<h1>Registration</h1>
 
 			<form th:action="@{/registration}" method="post" th:object="${registerReq}">
 
 				<div class="form-group">
+
 					<label class="control-label" for="fullname"> Full Name </label> <input
 						name="name" id="fullname" class="form-control" th:field="*{fullname}"
 						placeholder="Enter Full Name" required autofocus="autofocus" />
@@ -46,13 +41,14 @@
 					<label class="control-label" for="name"> Username </label> <input
 						name="name" id="name" class="form-control" th:field="*{name}"
 						placeholder="Enter Username" required autofocus="autofocus" />
-
 				</div>
 
 				<div class="form-group">
 					<label class="control-label" for="email"> Email </label>
 					<input name="email" id="email" class="form-control" type="email" th:field="*{email}"
+
 						   placeholder="Enter Email" autofocus="autofocus" />
+
 
 				</div>
 
@@ -60,6 +56,7 @@
 					<label class="control-label" for="password"> Password </label> <input
 						name="password" id="password" class="form-control" type="password"
 						th:field="*{password}" placeholder="Enter Password" autofocus="autofocus" />
+
 
 				</div>
 

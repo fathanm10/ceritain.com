@@ -6,45 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<header class="text-gray-600 body-font">
-    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-            <span class="ml-3 text-xl">CERITAIN.COM</span>
-        </a>
-        <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-            <a href="#" class="mr-5 hover:text-gray-900">Home</a>
-            <a href="#" class="mr-5 hover:text-gray-900">Reading List</a>
-            <a href="#" class="mr-5 hover:text-gray-900">Tambah Cerita</a>
-            <a href="#" class="mr-5 hover:text-gray-900">Profile</a>
-        </nav>
-        <div class="flex justify-center">
-            <div class="mb-3 xl:w-96">
-                <input
-                        type="search"
-                        class="
-        form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-      "
-                        id="exampleSearch"
-                        placeholder="Cari pencarian"
-                />
-            </div>
-        </div>
-    </div>
-</header>
+<header th:replace="fragments/navbar :: navbar"></header>
 <div class="text-center">
 <h1 class="font-bold text-4xl mb-4">Hasil Pencarian</h1>
 <section class="text-gray-600 body-font overflow-hidden">
