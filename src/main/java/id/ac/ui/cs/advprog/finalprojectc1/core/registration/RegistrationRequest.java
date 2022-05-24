@@ -11,6 +11,9 @@ import javax.validation.constraints.NotBlank;
 @ToString
 public class RegistrationRequest {
 
+
+    private String fullname;
+
     @NotBlank(message = "Name cannot be empty!")
     private  String name;
 
