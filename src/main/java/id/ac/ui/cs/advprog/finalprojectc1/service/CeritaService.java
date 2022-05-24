@@ -14,6 +14,8 @@ public interface CeritaService {
 
     List<Cerita> getAllCerita();
 
+    List<Cerita> getAllUserCerita();
+
     Cerita updateCerita(String id, Optional<String> judulOpt, Optional<String> isiOpt);
 
     void deleteCerita(String id);

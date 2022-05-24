@@ -3,6 +3,8 @@ package id.ac.ui.cs.advprog.finalprojectc1.controller;
 import id.ac.ui.cs.advprog.finalprojectc1.model.Cerita;
 import id.ac.ui.cs.advprog.finalprojectc1.service.CeritaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -20,6 +22,7 @@ public class CeritaController {
     @GetMapping()
     public String ceritaLandingPage(Model model) {
         model.addAttribute("AllCerita", ceritaService.getAllCerita());
+        model.addAttribute("UserCerita", ceritaService.getAllUserCerita());
         return "all_cerita";
     }
 
@@ -27,10 +30,12 @@ public class CeritaController {
     public String getCerita(@PathVariable String ceritaId, Model model) {
         Cerita cerita = ceritaService.getCeritaById(ceritaId);
         model.addAttribute("cerita", cerita);
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String currentUsername = ((UserDetails) principal).getUsername();
+        model.addAttribute("currentUsername", currentUsername);
         return "cerita";
     }
-
-    ;
 
     @GetMapping(value = "/add-cerita")
     public String createCerita(Model model) {
