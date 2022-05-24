@@ -46,7 +46,9 @@ public class ProfileService {
             profile.setFirstName(firstName);
             profile.setLastName(lastName);
 //            profile.setEmail(email);
-            profile.setUsername(username);
+            if (isUsernameUnique(username)) {
+                profile.setUsername(username);
+            }
             profile.setBio(bio);
             profile.setUrl("http://ceritain.com/@" + username);
             profile.setLinkPhoto(linkPhoto);
