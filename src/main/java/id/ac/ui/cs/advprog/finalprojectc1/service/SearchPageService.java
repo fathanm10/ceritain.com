@@ -12,11 +12,13 @@ public class SearchPageService {
     @Autowired
     private SearchPageRepository searchPageRepository;
 
-    public List<Cerita> findAllCerita(String keyword) {
-        if (keyword != null) {
-            return searchPageRepository.search(keyword);
-        }
-        return searchPageRepository.findAll();
+    public List<Cerita> getAllCerita() {
+        List<Cerita> list = (List<Cerita>)searchPageRepository.findAll();
+        return list;
+    }
+
+    public List<Cerita> getByKeyword(String keyword) {
+        return searchPageRepository.findByKeyword((keyword));
     }
 }
 

@@ -17,10 +17,15 @@ public class SearchPageController {
     private SearchPageService searchPageService;
 
     @RequestMapping(method = RequestMethod.GET, value = "")
-    private String home(Model model, @Param("keyword") String keyword) {
-        List<Cerita> ceritaList = searchPageService.findAllCerita(keyword);
-        model.addAttribute("ceritaList", ceritaList);
-        model.addAttribute("keyword", keyword);
+    private String home(Cerita cerita, Model model, String keyword) {
+        if(keyword != null) {
+            List<Cerita> list = searchPageService.getByKeyword(keyword);
+            model.addAttribute("list", list);
+        }
+        else {
+            List<Cerita> list = searchPageService.getAllCerita();
+            model.addAttribute("list", list);
+        }
         return "searchpage";
     }
 }
