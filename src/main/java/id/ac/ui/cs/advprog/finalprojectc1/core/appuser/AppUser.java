@@ -31,6 +31,7 @@ public class AppUser implements UserDetails{
             generator = "user_sequence"
     )
     private Long id;
+    private String fullname;
     private String name;
     private String email;
     private String password;
@@ -39,10 +40,12 @@ public class AppUser implements UserDetails{
     private Boolean locked = false;
     private Boolean enabled = false;
 
-    public AppUser(String name,
+    public AppUser(String fullname,
+                   String name,
                    String email,
                    String password,
                    AppUserRole appUserRole) {
+        this.fullname = fullname;
         this.name = name;
         this.email = email;
         this.password = password;
