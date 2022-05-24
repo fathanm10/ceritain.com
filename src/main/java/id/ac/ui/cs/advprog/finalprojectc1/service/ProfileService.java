@@ -27,9 +27,9 @@ public class ProfileService {
 
 //    public void saveProfileToDB(MultipartFile file, String firstName, String lastName,
 //                                String email, String username, String bio){
-    public int saveProfileToDB(String firstName, String lastName,
+    public Profile saveProfileToDB(String firstName, String lastName,
             String email, String username, String bio, String linkPhoto){
-        Profile profile = new Profile();
+//        Profile profile = new Profile();
 //        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 //        if (fileName.contains("..")){
 //            System.out.println("not a valid file");
@@ -40,16 +40,21 @@ public class ProfileService {
 //            e.printStackTrace();
 //        }
 
-        profile.setFirstName(firstName);
-        profile.setLastName(lastName);
-        profile.setEmail(email);
-        profile.setUsername(username);
-        profile.setBio(bio);
-        profile.setUrl("http://ceritain.com/@"+username);
-        profile.setLinkPhoto(linkPhoto);
+        Profile profile = getProfileByEmail(email);
 
-        profileRepository.save(profile);
-        return profile.getId();
+        if (profile != null) {
+            profile.setFirstName(firstName);
+            profile.setLastName(lastName);
+//            profile.setEmail(email);
+            profile.setUsername(username);
+            profile.setBio(bio);
+            profile.setUrl("http://ceritain.com/@" + username);
+            profile.setLinkPhoto(linkPhoto);
+            profileRepository.save(profile);
+            return profile;
+        }
+
+        return profile;
     }
 
     public Profile saveNewProfile(String email, String fullName, String username){

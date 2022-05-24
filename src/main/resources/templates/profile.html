@@ -29,21 +29,23 @@
                                 <div class="grid grid-cols-6 gap-6">
                                     <div class="col-span-6 sm:col-span-3">
                                         <label th:for="first-name" class="block text-sm font-medium text-gray-700">First Name</label>
-                                        <span th:if="${user == null}" th:for="first-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getFirstName()}"></span>
-                                        <span th:unless="${user == null}" th:for="first-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${user.firstName}"></span>
+                                        <span th:for="first-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getFirstName()}"></span>
+<!--                                        <span th:if="${user == null}" th:for="first-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getFirstName()}"></span>-->
+<!--                                        <span th:unless="${user == null}" th:for="first-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${user.firstName}"></span>-->
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-3">
                                         <label th:for="last-name" class="block text-sm font-medium text-gray-700">Last Name</label>
-                                        <span th:if="${user == null}" th:for="last-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getLastName()}"></span>
-<!--                                        <span th:if="${user == null}" th:unless="${userLogin.getLastName() != null}" th:for="last-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"> [Belum Terisi] </span>-->
-                                        <span th:unless="${user == null}" th:for="last-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${user.lastName}"></span>
+                                        <span th:for="last-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getLastName()}"></span>
+<!--                                        <span th:if="${user == null}" th:for="last-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getLastName()}"></span>-->
+<!--                                        <span th:unless="${user == null}" th:for="last-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${user.lastName}"></span>-->
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-4">
                                         <label th:for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                                        <span th:if="${user == null}" th:for="email" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getEmail()}"></span>
-                                        <span th:unless="${user == null}" th:for="email" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${user.email}"></span>
+                                        <span th:for="email" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getEmail()}"></span>
+<!--                                        <span th:if="${user == null}" th:for="email" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getEmail()}"></span>-->
+<!--                                        <span th:unless="${user == null}" th:for="email" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${user.email}"></span>-->
                                     </div>
 
                                 </div>
@@ -74,8 +76,9 @@
                                     <div class="col-span-3 sm:col-span-2">
                                         <label th:for="username" class="block text-sm font-medium text-gray-700"> Username </label>
                                         <div class="mt-1 flex rounded-md shadow-sm">
-                                            <span th:if="${user == null}" th:for="username" class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getUsername()}"></span>
-                                            <span th:unless="${user == null}" th:for="username" class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${user.username}"></span>
+                                            <span th:for="username" class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getUsername()}"></span>
+<!--                                            <span th:if="${user == null}" th:for="username" class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getUsername()}"></span>-->
+<!--                                            <span th:unless="${user == null}" th:for="username" class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${user.username}"></span>-->
                                         </div>
                                     </div>
                                 </div>
@@ -84,8 +87,9 @@
                                     <div class="col-span-3 sm:col-span-2">
                                         <label th:for="url" class="block text-sm font-medium text-gray-700"> URL </label>
                                         <div class="mt-1 flex rounded-md shadow-sm">
-                                            <span th:if="${user == null}" th:for="url" class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getUrl()}"></span>
-                                            <span th:unless="${user == null}" th:for="url" class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="'http://ceritain.com/@'+${user.username}"></span>
+                                            <span th:for="url" class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getUrl()}"></span>
+<!--                                            <span th:if="${user == null}" th:for="url" class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getUrl()}"></span>-->
+<!--                                            <span th:unless="${user == null}" th:for="url" class="inline-flex items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="'http://ceritain.com/@'+${user.username}"></span>-->
                                         </div>
                                     </div>
                                 </div>
@@ -95,10 +99,12 @@
 <!--                                    <div th:if="${user == null}" th:for="bio" rows="3" class="mt-1 text-sm shadow-md items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md">-->
 <!--                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at mi consectetur, bibendum enim et, porta velit. Suspendisse placerat laoreet pharetra. Duis sodales turpis vel lobortis viverra.-->
 <!--                                    </div>-->
-                                    <div th:if="${user == null}" th:for="bio" rows="3" class="mt-1 text-sm shadow-md items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md">
-                                        [Belum Terisi]
+                                    <div th:for="bio" rows="3" class="mt-1 text-sm shadow-md items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getBio()}">
                                     </div>
-                                    <div th:unless="${user == null}" th:for="bio" rows="3" class="mt-1 text-sm shadow-md items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${user.bio}">
+<!--                                    <div th:if="${user == null}" th:for="bio" rows="3" class="mt-1 text-sm shadow-md items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md">-->
+<!--                                        [Belum Terisi]-->
+<!--                                    </div>-->
+<!--                                    <div th:unless="${user == null}" th:for="bio" rows="3" class="mt-1 text-sm shadow-md items-center px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${user.bio}">-->
                                     </div>
 
                                 <div>
@@ -107,8 +113,10 @@
                                         <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
 
 <!--                                            <img th:if="${user == null}" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcv62WGNzop3RKy2h5EFE-NF2NWHnKQrHb7A&usqp=CAU">-->
-                                            <img th:if="${user == null}" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png">
-                                            <img th:unless="${user == null}" th:src="${user.linkPhoto}">
+                                            <img th:if="${userLogin.getLinkPhoto() == null}" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png">
+                                            <img th:unless="${userLogin.getLinkPhoto() == null}" th:src="${userLogin.getLinkPhoto()}">
+<!--                                            <img th:if="${user == null}" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png">-->
+<!--                                            <img th:unless="${user == null}" th:src="${user.linkPhoto}">-->
 <!--                                            <img th:src="${'data:image/jpeg;base64,'+{user.photo}}"-->
                                             alt=""
                                             class="h-12 w-12 object-cover">
