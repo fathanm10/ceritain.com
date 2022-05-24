@@ -26,7 +26,10 @@ public class UserProfileController {
 
     @GetMapping(value = "")
     public String homepage(Model model){
-
+//        model.addAttribute("username", profileService.getUsernameLogin());
+        model.addAttribute("userLogin", profileService.getAppuser());
+        model.addAttribute("userName", profileService.getAppuser().getName());
+        model.addAttribute("userEmail",profileService.getAppuser().getEmail());
         return PROFILE;
     }
 
@@ -38,11 +41,14 @@ public class UserProfileController {
 
     @PostMapping(value = "")
     public String createProfile(Model model){
+        model.addAttribute("userLoggedIn", profileService.getAppuser());
+
         return "redirect:/profile/edit";
     }
 
     @GetMapping(value = "/edit")
     public String editProfile(Model model){
+        model.addAttribute("userLoggedIn", profileService.getAppuser());
         model.addAttribute(PROFILE, new Profile());
         return "edit_profile";
     }
