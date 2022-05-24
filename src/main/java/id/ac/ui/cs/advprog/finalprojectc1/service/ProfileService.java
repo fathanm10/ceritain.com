@@ -52,17 +52,87 @@ public class ProfileService {
         return profile.getId();
     }
 
+    public Profile saveNewProfile(String email, String fullName, String username){
+        Profile profile = getProfileByEmail(email);
+
+        if (profile == null){
+            profile = new Profile();
+
+            String[] name = fullName.split("\\s+");
+            if (name.length != 0){
+                if (name.length == 1){
+                    profile.setFirstName(name[0]);
+                } else {
+                    profile.setFirstName(name[0]);
+                    if (name.length == 2){
+                        profile.setLastName(name[1]);
+                    } else {
+                        String lastName = "";
+                        for (int i = 1; i < name.length; ++i){
+                            if (i != name.length-1){
+                                lastName += name[i] + " ";
+                            } else lastName += name[i];
+                        }
+                        profile.setLastName(lastName);
+                    }
+                }
+            }
+
+            profile.setEmail(email);
+            profile.setUsername(username);
+            profile.setUrl("http://ceritain.com/@"+username);
+
+            profileRepository.save(profile);
+            return profile;
+
+        }
+//        else {
+//            if (!profile.getUsername().equals(username)){
+//                if (isUsernameUnique(username)) {
+//                    profile.setUsername(username);
+//                    profile.setUrl("http://ceritain.com/@" + username);
+//                }
+//            }
+//
+//            String[] name = fullName.split("\\s+");
+//            String firstName = name[0];
+//
+//
+//
+//        }
+        return profile;
+    }
+
+    public boolean isUsernameUnique(String username){
+        boolean check = true;
+
+        for (Profile p: profileRepository.findAll()){
+            if (p.getUsername().equals(username)) {
+                check = false;
+                return check;
+            }
+        }
+        return check;
+    }
+
     public Profile getProfileById(int id){
         return profileRepository.getById(id);
     }
 
-    public Profile getUserByEmail(String email){
-        List<Profile> lst = profileRepository.findAll();
+//    public Profile getUserByEmail(String email){
+//        List<Profile> lst = profileRepository.findAll();
+//
+//        for (Profile i: lst){
+//            if (i.getEmail().equals(email)){
+//                return i;
+//            }
+//        }
+//        return null;
+//    }
 
-        for (Profile i: lst){
-            if (i.getEmail().equals(email)){
-                return i;
-            }
+    public Profile getProfileByEmail(String email){
+        for (Profile p: profileRepository.findAll()){
+            if (p.getEmail().equals(email)) return p;
         }
         return null;
     }

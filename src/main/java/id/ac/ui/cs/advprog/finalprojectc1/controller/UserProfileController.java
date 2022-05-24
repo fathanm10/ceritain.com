@@ -27,9 +27,13 @@ public class UserProfileController {
     @GetMapping(value = "")
     public String homepage(Model model){
 //        model.addAttribute("username", profileService.getUsernameLogin());
-        model.addAttribute("userLogin", profileService.getAppuser());
-        model.addAttribute("userName", profileService.getAppuser().getName());
-        model.addAttribute("userEmail",profileService.getAppuser().getEmail());
+        Profile profile = profileService.saveNewProfile(profileService.getAppuser().getUsername(), profileService.getAppuser().getFullname(), profileService.getAppuser().getName());
+        model.addAttribute("userLogin", profile);
+//        model.addAttribute("userLogin", profileService.getAppuser());
+//        model.addAttribute("userName", profileService.getAppuser().getName());
+//        model.addAttribute("userEmail",profileService.getAppuser().getEmail());
+//        model.addAttribute("userFullName", profileService.getAppuser().getFullname());
+//        model.addAttribute("profile", new Profile());
         return PROFILE;
     }
 
