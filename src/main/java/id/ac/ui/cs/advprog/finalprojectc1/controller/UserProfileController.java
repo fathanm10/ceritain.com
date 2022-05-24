@@ -26,7 +26,20 @@ public class UserProfileController {
 
     @GetMapping(value = "")
     public String homepage(Model model){
+//        model.addAttribute("username", profileService.getUsernameLogin());
+        Profile profile = profileService.getProfileByEmail(profileService.getAppuser().getEmail());
 
+        if (profile == null) {
+            profile = profileService.saveNewProfile(profileService.getAppuser().getUsername(), profileService.getAppuser().getFullname(), profileService.getAppuser().getName());
+        } else{
+
+        }
+        model.addAttribute("userLogin", profile);
+//        model.addAttribute("userLogin", profileService.getAppuser());
+//        model.addAttribute("userName", profileService.getAppuser().getName());
+//        model.addAttribute("userEmail",profileService.getAppuser().getEmail());
+//        model.addAttribute("userFullName", profileService.getAppuser().getFullname());
+//        model.addAttribute("profile", new Profile());
         return PROFILE;
     }
 
@@ -38,12 +51,15 @@ public class UserProfileController {
 
     @PostMapping(value = "")
     public String createProfile(Model model){
+        model.addAttribute("userLoggedIn", profileService.getProfileByEmail(profileService.getAppuser().getEmail()));
+
         return "redirect:/profile/edit";
     }
 
     @GetMapping(value = "/edit")
     public String editProfile(Model model){
-        model.addAttribute(PROFILE, new Profile());
+        model.addAttribute("userLoggedIn", profileService.getAppuser());
+        model.addAttribute(PROFILE, profileService.getProfileByEmail(profileService.getAppuser().getEmail()));
         return "edit_profile";
     }
 
@@ -51,8 +67,8 @@ public class UserProfileController {
     public String editProfilePost(@RequestParam(value = "linkPhoto") String linkPhoto, @RequestParam(value = "firstName") String firstName,
                               @RequestParam(value = "lastName") String lastName, @RequestParam(value = "email") String email,
                               @RequestParam(value = "username") String username, @RequestParam(value = "bio") String bio){
-        int id = profileService.saveProfileToDB(firstName, lastName, email, username, bio, linkPhoto);
-        return "redirect:/profile/" + id;
+        profileService.saveProfileToDB(firstName, lastName, email, username, bio, linkPhoto);
+        return "redirect:/profile";
     }
 
 

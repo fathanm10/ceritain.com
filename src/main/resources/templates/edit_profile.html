@@ -28,7 +28,10 @@
                                 <div class="grid grid-cols-6 gap-6">
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="first-name" class="block text-sm font-medium text-gray-700">First Name</label>
-                                        <input type="text" th:field="*{firstName}" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm" placeholder="Enter your first name">
+<!--                                        <input th:if="${userLoggedIn.getName() != null}" type="text" th:field="*{firstName}" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm" th:value="${userLoggedIn.getName()">-->
+                                        <input type="text" th:field="*{firstName}" id="first-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm" placeholder="Enter your first name">
+<!--                                        <input type="text" th:field="*{firstName}" id="first-name" th:value="${userLoggedIn.getName()}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm">-->
+<!--                                        <input th:unless="${userLoggedIn.getName() != null}" type="text" th:field="*{firstName}" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm" placeholder="Enter your first name">-->
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-3">
