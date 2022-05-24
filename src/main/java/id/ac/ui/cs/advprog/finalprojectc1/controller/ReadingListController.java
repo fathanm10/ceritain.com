@@ -20,6 +20,10 @@ public class ReadingListController {
 
     @GetMapping({"/",""})
     public String readingList(Model model) {
+        var allReadingList = readingListService.getAllReadingList();
+        var allUserReadingList = readingListService.getAllUserReadingList();
+        model.addAttribute("allReadingList", allReadingList);
+        model.addAttribute("allUserReadingList", allUserReadingList);
         return "reading_list";
     }
 
@@ -40,6 +44,10 @@ public class ReadingListController {
     public String editReadingList(@PathVariable int readinglistId,
                                   Model model) {
         var readingList = readingListService.getReadingListById(readinglistId);
+
+        var matchFlag = readingListService.matchCreatorWithUser(readingList);
+        if (!matchFlag) return String.format("redirect:/reading-list/view/%d",readinglistId);
+
         model.addAttribute(READINGLISTMODEL, readingList);
         return "reading_list_edit";
     }
@@ -57,14 +65,16 @@ public class ReadingListController {
             readingListService.deleteReadingList(readinglistId);
         }
         model.addAttribute(READINGLISTMODEL, readingList);
-        return "redirect:/reading-list/add-cerita";
+        return "redirect:/reading-list/";
     }
 
     @GetMapping(value = "/view/{readinglistId}")
     public String viewReadingList(@PathVariable(required=false) int readinglistId,
                                   Model model) {
         var readingList = readingListService.getReadingListById(readinglistId);
+        var matchFlag = readingListService.matchCreatorWithUser(readingList);
         model.addAttribute(READINGLISTMODEL, readingList);
+        model.addAttribute("matchFlag", matchFlag);
         return "reading_list_view";
     }
 
@@ -72,9 +82,9 @@ public class ReadingListController {
     public String addCerita(@PathVariable String ceritaId,
                             Model model) {
         var cerita = ceritaService.getCeritaById(ceritaId);
-        var allReadingList = readingListService.getAllReadingList();
+        var allUserReadingList = readingListService.getAllUserReadingList();
         model.addAttribute("cerita", cerita);
-        model.addAttribute("allReadingList", allReadingList);
+        model.addAttribute("allUserReadingList", allUserReadingList);
         return "reading_list_add_cerita";
     }
 

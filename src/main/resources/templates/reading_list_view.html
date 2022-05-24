@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <header class="p-5"></header>
+    <header th:replace="fragments/navbar :: navbar" class="p-5"></header>
     <div th:if="${readingList} != null">
         <h1 class="text-center font-bold text-3xl my-3" th:text="${readingList.getJudul()}">Judul</h1>
         <h3 class="text-center font-thin text-lg italic my-3 mx-20" th:text="${readingList.getDeskripsi()}">Deskripsi</h3>
@@ -17,7 +17,7 @@
                 <input th:name="id" th:value="${readingList.getId()}" hidden>
                 <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-6 py-2 px-3">
                     <label class="form-check-label col-span-4 mx-auto" th:text="${cerita.getJudulCerita()}">Judul Cerita</label>
-                    <div class="flex justify-center">
+                    <div class="flex justify-center" th:if="${matchFlag} == true">
                         <button type="submit"
                                 class="bg-[#e43c3c] hover:bg-[#913636] text-white py-2 px-4 rounded" th:name="ceritaId" th:value="${cerita.getId()}">Hapus
                         </button>

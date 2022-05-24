@@ -9,6 +9,8 @@ public interface ReadingListService {
     ReadingList getReadingListById(int readinglistId);
     ReadingList updateReadingList(int readinglistId, String judul, String deskripsi);
     void deleteReadingList(int readinglistId);
+    List<ReadingList> getAllUserReadingList();
     List<ReadingList> getAllReadingList();
     ReadingList updateCerita(int readinglistId, String ceritaId, String cmd);
+    boolean matchCreatorWithUser(ReadingList readingList);
 }

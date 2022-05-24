@@ -27,6 +27,9 @@ public class ReadingList {
     @Column(name="readinglist_deskripsi")
     private String deskripsi;
 
+    @Column(name = "creator")
+    private String creator;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "readinglist_listcerita",

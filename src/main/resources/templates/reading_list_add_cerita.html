@@ -8,12 +8,12 @@
 </head>
 
 <body>
-    <header class="p-5"></header>
+    <header th:replace="fragments/navbar :: navbar" class="p-5"></header>
     <h5 class="text-center font-bold text-3xl my-3">Tambah Cerita ke Reading List</h5>
     <h2 class="text-center font-light text-1xl my-3" th:text="${cerita.getJudulCerita()}"></h2>
     <div class="flex justify-center items-center mx-auto mt-10">
         <form method="post" class="w-full" th:action="@{/reading-list/add-cerita/{id}(id=${cerita.getId()})}">
-            <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-4 gap-4 py-2" th:each="readingList : ${allReadingList}">
+            <div class="form-check flex flex-wrap items-center justify-center grid grid-cols-4 gap-4 py-2" th:each="readingList : ${allUserReadingList}">
                 <label class="form-check-label col-span-3 mx-auto" th:text="${readingList.getJudul()}"></label>
                 <div class="flex justify-center"><button type="submit"
                         class="bg-[#E08958] hover:bg-[#7a4a2f] text-white py-2 px-4 rounded" th:name="id" th:value="${readingList.getId()}">Tambah</button></div>
