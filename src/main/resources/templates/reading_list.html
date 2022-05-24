@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <header class="p-5"></header>
+    <header th:replace="fragments/navbar :: navbar" class="p-5"></header>
     <a th:href="@{/reading-list/create}" class="bg-[#345875] hover:bg-[#0F3B5E] text-white py-2 px-4 rounded">Create</a>
     <a th:href="@{/reading-list/view}"
         class="bg-[#345875] hover:bg-[#0F3B5E] text-white py-2 px-4 rounded">Read/Delete</a>
