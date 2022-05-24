@@ -1,6 +1,6 @@
 package id.ac.ui.cs.advprog.finalprojectc1.model;
 
-/*import lombok.AllArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,6 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 @Data
 @Builder
@@ -17,7 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name="cerita")
-*/public class Cerita { /*
+public class Cerita {
 
     @Id
     @Column(name="cerita_id")
@@ -37,5 +36,8 @@ import java.util.Set;
 
     @Column(name = "updated_at")
     private Date updatedAt;
-*/
+
+    @Column(name = "creator")
+    private String creator;
+
 }
