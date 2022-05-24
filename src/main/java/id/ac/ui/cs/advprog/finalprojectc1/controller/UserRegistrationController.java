@@ -34,7 +34,7 @@ public class UserRegistrationController {
 
         }
         registrationService.register(req);
-        return "reg_success";
+        return "redirect:/registration?success";
 
     }
 
@@ -53,7 +53,7 @@ public class UserRegistrationController {
     @GetMapping(path = "/registration/confirm/{token}")
     public String confirm(@PathVariable(value = "token") String token){
         registrationService.confirmToken(token);
-        return "verify_email";
+        return "redirect:/login";
     }
 
     @GetMapping( path = "/logged")

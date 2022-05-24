@@ -29,7 +29,7 @@
 
 			<!-- success message -->
 			<div th:if="${param.success}">
-				<div class="alert alert-info">Please confirm Your Email</div>
+				<div class="alert alert-info">Registration Successfull, Please Check Your Email</div>
 			</div>
 
 			<h1>Registration</h1>
@@ -37,23 +37,29 @@
 			<form th:action="@{/registration}" method="post" th:object="${registerReq}">
 
 				<div class="form-group">
-					<label class="control-label" for="name"> Name </label> <input
+					<label class="control-label" for="fullname"> Full Name </label> <input
+						name="name" id="fullname" class="form-control" th:field="*{fullname}"
+						placeholder="Enter Full Name" required autofocus="autofocus" />
+
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="name"> Username </label> <input
 						name="name" id="name" class="form-control" th:field="*{name}"
-						required autofocus="autofocus" />
+						placeholder="Enter Username" required autofocus="autofocus" />
 
 				</div>
 
 				<div class="form-group">
 					<label class="control-label" for="email"> Email </label>
 					<input name="email" id="email" class="form-control" type="email" th:field="*{email}"
-						 autofocus="autofocus" />
+						   placeholder="Enter Email" autofocus="autofocus" />
 
 				</div>
 
 				<div class="form-group">
 					<label class="control-label" for="password"> Password </label> <input
 						name="password" id="password" class="form-control" type="password"
-						th:field="*{password}" autofocus="autofocus" />
+						th:field="*{password}" placeholder="Enter Password" autofocus="autofocus" />
 
 				</div>
 
