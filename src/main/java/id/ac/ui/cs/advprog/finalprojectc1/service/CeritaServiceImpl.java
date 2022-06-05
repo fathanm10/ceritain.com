@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -70,7 +71,9 @@ public class CeritaServiceImpl implements CeritaService {
         var readingListAll = readingListRepository.findAll();
         var cerita = getCeritaById(ceritaId);
         readingListAll.forEach(readingList -> {
-            readingList.removeCerita(cerita);
+            Set<Cerita> ceritaSet = readingList.getCeritaSet();
+            ceritaSet.remove(cerita);
+            readingList.setCeritaSet(ceritaSet);
             readingListRepository.save(readingList);
         });
     }
