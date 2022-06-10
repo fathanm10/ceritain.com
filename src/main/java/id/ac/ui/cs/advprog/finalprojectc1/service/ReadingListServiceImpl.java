@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.finalprojectc1.service;
 
+import id.ac.ui.cs.advprog.finalprojectc1.model.Cerita;
 import id.ac.ui.cs.advprog.finalprojectc1.model.ReadingList;
 import id.ac.ui.cs.advprog.finalprojectc1.repository.CeritaRepository;
 import id.ac.ui.cs.advprog.finalprojectc1.repository.ReadingListRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ReadingListServiceImpl implements ReadingListService {
@@ -22,8 +24,7 @@ public class ReadingListServiceImpl implements ReadingListService {
 
     @Override
     public ReadingList createReadingList(String judul, String deskripsi) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String currentUsername = ((UserDetails)principal).getUsername();
+        String currentUsername = getCurrentUsername();
         var readinglist = ReadingList.builder()
                 .judul(judul)
                 .deskripsi(deskripsi)
@@ -53,9 +54,7 @@ public class ReadingListServiceImpl implements ReadingListService {
 
     @Override
     public List<ReadingList> getAllUserReadingList() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String currentUsername = ((UserDetails)principal).getUsername();
-
+        String currentUsername = getCurrentUsername();
         List<ReadingList> userReadingList = new ArrayList<>();
         List<ReadingList> allReadingList = readingListRepository.findAll();
         allReadingList.forEach(readingList -> {
@@ -75,9 +74,13 @@ public class ReadingListServiceImpl implements ReadingListService {
         var readingList = getReadingListById(readinglistId);
         if (cerita.isPresent()){
             if (cmd.equals("add")) {
-                readingList.addCerita(cerita.get());
+                Set<Cerita> ceritaSet = readingList.getCeritaSet();
+                ceritaSet.add(cerita.get());
+                readingList.setCeritaSet(ceritaSet);
             } else if (cmd.equals("remove")) {
-                readingList.removeCerita(cerita.get());
+                Set<Cerita> ceritaSet = readingList.getCeritaSet();
+                ceritaSet.remove(cerita.get());
+                readingList.setCeritaSet(ceritaSet);
             }
         }
         return readingListRepository.save(readingList);
@@ -85,9 +88,13 @@ public class ReadingListServiceImpl implements ReadingListService {
 
     @Override
     public boolean matchCreatorWithUser (ReadingList readingList) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String currentUsername = ((UserDetails)principal).getUsername();
-
+        String currentUsername = getCurrentUsername();
         return readingList.getCreator().equals(currentUsername);
+    }
+
+    @Override
+    public String getCurrentUsername() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return ((UserDetails)principal).getUsername();
     }
 }

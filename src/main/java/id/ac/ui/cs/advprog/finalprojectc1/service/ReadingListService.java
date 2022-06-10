@@ -13,4 +13,5 @@ public interface ReadingListService {
     List<ReadingList> getAllReadingList();
     ReadingList updateCerita(int readinglistId, String ceritaId, String cmd);
     boolean matchCreatorWithUser(ReadingList readingList);
+    String getCurrentUsername();
 }
