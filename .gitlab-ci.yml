@@ -7,13 +7,12 @@ stages:
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
-  - gem install dpl
   - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
-  - heroku pg:killall --app ap2022-c1-staging
 
 test:
   stage: test
   script:
+    - heroku pg:killall --app $HEROKU_APP_NAME_STAGING
     - export SPRING_PROFILES_ACTIVE=test
     - gradle check --stacktrace
     - cat build/reports/jacoco/test/html/index.html | grep -o '<tfoot>.*</tfoot>'
@@ -27,6 +26,8 @@ Deploy_staging:
   only:
     - staging
   image: ruby:latest
+  before_script:
+    - gem install dpl
   script:
     - dpl --provider=heroku
       --app=$HEROKU_APP_NAME_STAGING
