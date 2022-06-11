@@ -3,7 +3,6 @@ package id.ac.ui.cs.advprog.finalprojectc1.service;
 import id.ac.ui.cs.advprog.finalprojectc1.model.Cerita;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CeritaService {
 

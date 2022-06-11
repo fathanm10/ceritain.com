@@ -4,15 +4,12 @@ import id.ac.ui.cs.advprog.finalprojectc1.model.Cerita;
 import id.ac.ui.cs.advprog.finalprojectc1.repository.CeritaRepository;
 import id.ac.ui.cs.advprog.finalprojectc1.repository.ReadingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.Null;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,26 +29,20 @@ public class CeritaServiceImpl implements CeritaService {
         }
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = ((UserDetails) principal).getUsername();
-        Cerita cerita = Cerita.builder().judulCerita(judul).isiCerita(isi).creator(username).build();
+        var cerita = Cerita.builder().judulCerita(judul).isiCerita(isi).creator(username).build();
         cerita.setCreatedAt(new Date());
         return ceritaRepository.save(cerita);
     }
-
-    ;
 
     @Override
     public Cerita getCeritaById(String id) {
         return ceritaRepository.getById(id);
     }
 
-    ;
-
     @Override
     public List<Cerita> getAllCerita() {
         return ceritaRepository.findAll();
     }
-
-    ;
 
     @Override
     public List<Cerita> getAllUserCerita() {
@@ -59,23 +50,18 @@ public class CeritaServiceImpl implements CeritaService {
         String currentUsername = ((UserDetails) principal).getUsername();
 
         List<Cerita> allCerita = ceritaRepository.findAll();
-        List<Cerita> userCeritas = allCerita.stream()
+        return allCerita.stream()
                 .filter(p -> p.getCreator().equals(currentUsername)).collect(Collectors.toList());
-        return userCeritas;
     }
-
-    ;
 
     @Override
     public Cerita updateCerita(String id, String judulOpt, String isiOpt) {
-        Cerita cerita = getCeritaById(id);
+        var cerita = getCeritaById(id);
         cerita.setJudulCerita(judulOpt);
         cerita.setIsiCerita(isiOpt);
         cerita.setUpdatedAt(new Date());
         return ceritaRepository.save(cerita);
     }
-
-    ;
 
     @Override
     public void deleteCerita(String id) {
