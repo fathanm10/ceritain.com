@@ -7,10 +7,11 @@ stages:
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
-  - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
 test:
   stage: test
+  before_script:
+    - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
   script:
     - heroku pg:killall --app $HEROKU_APP_NAME_STAGING
     - export SPRING_PROFILES_ACTIVE=test
@@ -28,6 +29,7 @@ Deploy_staging:
   image: ruby:latest
   before_script:
     - gem install dpl
+    - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
   script:
     - dpl --provider=heroku
       --app=$HEROKU_APP_NAME_STAGING
