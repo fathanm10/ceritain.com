@@ -11,8 +11,8 @@ public class EmailValidatorService implements Predicate<String> {
 
     @Override
     public boolean test(String s) {
-        String emailRegex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-        Pattern pat = Pattern.compile(emailRegex);
+        var emailRegex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+        var pat = Pattern.compile(emailRegex);
         return pat.matcher(s).matches();
 
     }

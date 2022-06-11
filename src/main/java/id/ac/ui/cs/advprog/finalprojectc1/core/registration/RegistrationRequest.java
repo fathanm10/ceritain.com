@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 @ToString
 public class RegistrationRequest {
@@ -23,8 +24,4 @@ public class RegistrationRequest {
 
     private  String password;
 
-    // for model attribute
-    public RegistrationRequest() {
-
-    }
 }
