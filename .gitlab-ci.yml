@@ -7,6 +7,9 @@ stages:
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
+  - gem install dpl
+  - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+  - heroku pg:killall --app ap2022-c1-staging
 
 test:
   stage: test
@@ -24,9 +27,6 @@ Deploy_staging:
   only:
     - staging
   image: ruby:latest
-  before_script:
-    - gem install dpl
-    - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
   script:
     - dpl --provider=heroku
       --app=$HEROKU_APP_NAME_STAGING
