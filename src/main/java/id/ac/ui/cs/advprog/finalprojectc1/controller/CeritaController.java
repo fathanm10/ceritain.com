@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,13 +50,14 @@ public class CeritaController {
 
     @GetMapping(value = "delete-cerita/{ceritaId}")
     public String deleteCerita(@PathVariable String ceritaId) {
+        ceritaService.deleteCeritaFromAllReadingList(ceritaId);
         ceritaService.deleteCerita(ceritaId);
         return "redirect:/cerita";
     }
 
     @GetMapping(value = "/edit-cerita/{ceritaId}")
     public String updateCerita(@PathVariable String ceritaId, Model model) {
-        Cerita cerita = ceritaService.getCeritaById(ceritaId);
+        var cerita = ceritaService.getCeritaById(ceritaId);
         model.addAttribute("cerita", cerita);
         return "edit_cerita";
     }

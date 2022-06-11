@@ -19,4 +19,6 @@ public interface CeritaService {
     Cerita updateCerita(String id, Optional<String> judulOpt, Optional<String> isiOpt);
 
     void deleteCerita(String id);
+
+    void deleteCeritaFromAllReadingList(String ceritaId);
 }
