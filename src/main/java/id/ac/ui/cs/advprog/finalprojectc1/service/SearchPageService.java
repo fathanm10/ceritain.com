@@ -13,8 +13,7 @@ public class SearchPageService {
     private SearchPageRepository searchPageRepository;
 
     public List<Cerita> getAllCerita() {
-        List<Cerita> list = (List<Cerita>)searchPageRepository.findAll();
-        return list;
+        return searchPageRepository.findAll();
     }
 
     public List<Cerita> getByKeyword(String keyword) {

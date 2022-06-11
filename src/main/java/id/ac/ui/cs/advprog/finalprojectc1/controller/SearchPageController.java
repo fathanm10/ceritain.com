@@ -2,7 +2,6 @@ package id.ac.ui.cs.advprog.finalprojectc1.controller;
 import id.ac.ui.cs.advprog.finalprojectc1.model.Cerita;
 import id.ac.ui.cs.advprog.finalprojectc1.service.SearchPageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +15,8 @@ public class SearchPageController {
     @Autowired
     private SearchPageService searchPageService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "")
-    private String home(Cerita cerita, Model model, String keyword) {
+    @GetMapping(value = "")
+    public String home(Cerita cerita, Model model, String keyword) {
         if(keyword != null) {
             List<Cerita> list = searchPageService.getByKeyword(keyword);
             model.addAttribute("list", list);
