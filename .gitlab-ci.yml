@@ -10,7 +10,7 @@ before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
 reset_cred:
-  stage: deploy
+  stage: reset_cred
   image: ruby:latest
   before_script:
     - gem install dpl
