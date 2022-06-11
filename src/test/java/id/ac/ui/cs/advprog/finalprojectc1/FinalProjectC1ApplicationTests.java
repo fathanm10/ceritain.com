@@ -8,6 +8,7 @@ class FinalProjectC1ApplicationTests {
 
     @Test
     void contextLoads() {
+        FinalProjectC1Application.main(new String[0]);
     }
 
 }
