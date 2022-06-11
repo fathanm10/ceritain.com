@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.finalprojectc1.controller;
-import id.ac.ui.cs.advprog.finalprojectc1.core.ReadingList;
+import id.ac.ui.cs.advprog.finalprojectc1.model.ReadingList;
+import id.ac.ui.cs.advprog.finalprojectc1.service.CeritaService;
 import id.ac.ui.cs.advprog.finalprojectc1.service.ReadingListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +11,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/reading-list")
 public class ReadingListController {
 
+    private static final String READINGLISTMODEL = "readingList";
     @Autowired
     private ReadingListService readingListService;
 
+    @Autowired
+    private CeritaService ceritaService;
+
     @GetMapping({"/",""})
     public String readingList(Model model) {
+        var allReadingList = readingListService.getAllReadingList();
+        var allUserReadingList = readingListService.getAllUserReadingList();
+        model.addAttribute("allReadingList", allReadingList);
+        model.addAttribute("allUserReadingList", allUserReadingList);
         return "reading_list";
     }
 
@@ -35,7 +44,11 @@ public class ReadingListController {
     public String editReadingList(@PathVariable int readinglistId,
                                   Model model) {
         var readingList = readingListService.getReadingListById(readinglistId);
-        model.addAttribute("readingList", readingList);
+
+        var matchFlag = readingListService.matchCreatorWithUser(readingList);
+        if (!matchFlag) return String.format("redirect:/reading-list/view/%d",readinglistId);
+
+        model.addAttribute(READINGLISTMODEL, readingList);
         return "reading_list_edit";
     }
 
@@ -51,23 +64,41 @@ public class ReadingListController {
         } else if (command.equals("delete")) {
             readingListService.deleteReadingList(readinglistId);
         }
-        model.addAttribute("readingList", readingList);
-        return "redirect:/reading-list/add-cerita";
+        model.addAttribute(READINGLISTMODEL, readingList);
+        return "redirect:/reading-list/";
     }
 
     @GetMapping(value = "/view/{readinglistId}")
     public String viewReadingList(@PathVariable(required=false) int readinglistId,
                                   Model model) {
         var readingList = readingListService.getReadingListById(readinglistId);
-        model.addAttribute("readingList", readingList);
+        var matchFlag = readingListService.matchCreatorWithUser(readingList);
+        model.addAttribute(READINGLISTMODEL, readingList);
+        model.addAttribute("matchFlag", matchFlag);
         return "reading_list_view";
     }
 
-    @GetMapping(value = "/add-cerita")
-    public String addCerita(Model model) {
-        var allReadingList = readingListService.getAllReadingList();
-        model.addAttribute("allReadingList", allReadingList);
+    @GetMapping(value = "/add-cerita/{ceritaId}")
+    public String addCerita(@PathVariable String ceritaId,
+                            Model model) {
+        var cerita = ceritaService.getCeritaById(ceritaId);
+        var allUserReadingList = readingListService.getAllUserReadingList();
+        model.addAttribute("cerita", cerita);
+        model.addAttribute("allUserReadingList", allUserReadingList);
         return "reading_list_add_cerita";
     }
 
+    @PostMapping(value = "/add-cerita/{ceritaId}")
+    public String addCerita(@PathVariable String ceritaId,
+                            @RequestParam (value="id") int readinglistId) {
+        readingListService.updateCerita(readinglistId, ceritaId, "add");
+        return "redirect:/reading-list/view/"+readinglistId;
+    }
+
+    @PostMapping(value = "/remove-cerita")
+    public String removeCerita(@RequestParam (value="id") int readinglistId,
+                               @RequestParam (value="ceritaId") String ceritaId) {
+        readingListService.updateCerita(readinglistId, ceritaId, "remove");
+        return "redirect:/reading-list/view/"+readinglistId;
+    }
 }
