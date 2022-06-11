@@ -7,17 +7,25 @@ import id.ac.ui.cs.advprog.finalprojectc1.repository.ReadingListRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -50,8 +58,54 @@ class CeritaServiceTest {
     }
 
     @Test
-    void testDeleteCerita() {
+    @WithMockUser(mainUser)
+    void testAddCeritaPositive() {
+        ceritaService.createCerita("Mock Judul", "Mock Cerita");
+        verify(ceritaRepository).save(any(Cerita.class));
+    }
+
+    @Test
+    @WithMockUser(mainUser)
+    void testAddCeritaNegative() {
+        boolean thrown = false;
+        try {
+            ceritaService.createCerita("", "Mock Cerita");
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+    }
+
+    @Test
+    void testReadOneCerita() {
         Cerita cerita = Mockito.mock(Cerita.class);
+        ceritaRepository.save(cerita);
+
+        ceritaService.getCeritaById(cerita.getId());
+        verify(ceritaRepository).getById(cerita.getId());
+    }
+
+    @Test
+    void testReadAllCerita() {
+        ceritaService.getAllCerita();
+        verify(ceritaRepository).findAll();
+    }
+
+    @Test
+    @WithMockUser(mainUser)
+    void testUpdateOneCerita() {
+        Cerita cerita = Mockito.mock(Cerita.class);
+        when(ceritaService.getCeritaById(any(String.class))).thenReturn(cerita);
+        ceritaService.updateCerita("7a72a23c-4beb-49e1-8092-89b75804b50b", "Judul Edited", "Isi Edited");
+        verify(cerita).setJudulCerita("Judul Edited");
+        verify(cerita).setIsiCerita("Isi Edited");
+        verify(ceritaRepository).save(cerita);
+    }
+
+    @Test
+    void testDeleteCeritaPositive() {
+        Cerita cerita = Mockito.mock(Cerita.class);
+        when(ceritaRepository.getById(any(String.class))).thenReturn(cerita);
         ceritaRepository.save(cerita);
         ceritaService.deleteCerita(cerita.getId());
         verify(ceritaRepository).deleteById(cerita.getId());
