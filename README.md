@@ -1,6 +1,6 @@
 # Final Project C1
 
-[![coverage report](https://gitlab.cs.ui.ac.id/AdvProg/reguler-2022/student/kelas-c-blended/2006595854-Dzikri-Qalam-Hatorangan/final-project-c1/badges/code-coverage/coverage.svg)](https://gitlab.cs.ui.ac.id/AdvProg/reguler-2022/student/kelas-c-blended/2006595854-Dzikri-Qalam-Hatorangan/final-project-c1/-/commits/code-coverage)
+[![coverage report](https://gitlab.cs.ui.ac.id/AdvProg/reguler-2022/student/kelas-c-blended/2006595854-Dzikri-Qalam-Hatorangan/final-project-c1/badges/staging/coverage.svg)](https://gitlab.cs.ui.ac.id/AdvProg/reguler-2022/student/kelas-c-blended/2006595854-Dzikri-Qalam-Hatorangan/final-project-c1/-/commits/staging)
 
 ## Deployed Apps
 * main: https://ap2022-c1-master.herokuapp.com/
