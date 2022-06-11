@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(controllers = ProfileService.class)
-public class ProfileServiceTest {
+class ProfileServiceTest {
 
     @MockBean
     private SecurityContextHolder securityContextHolder;
