@@ -1,58 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Search Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="ISO-8859-1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>SEARCH</title>
 </head>
 <body>
-<header th:replace="fragments/navbar :: navbar"></header>
-<div class="text-center">
-<h1 class="font-bold text-4xl mb-4">Hasil Pencarian</h1>
-<section class="text-gray-600 body-font overflow-hidden">
-    <div class="container px-5 py-24 mx-auto">
-        <div class="flex flex-wrap -m-12">
-            <div class="p-12 md:w-1/2 flex flex-col items-start">
-                <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4">Roof party normcore before they sold out, cornhole vape</h2>
-                <p class="leading-relaxed mb-8">Live-edge letterpress cliche, salvia fanny pack humblebrag narwhal portland. VHS man braid palo santo hoodie brunch trust fund. Bitters hashtag waistcoat fashion axe chia unicorn. Plaid fixie chambray 90's, slow-carb etsy tumeric. Cray pug you probably haven't heard of them hexagon kickstarter craft beer pork chic.</p>
-                <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
-                    <a href="#" class="text-indigo-500 inline-flex items-center">Selengkapnya
-                        <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14"></path>
-                            <path d="M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-                <a class="inline-flex items-center">
-                    <img alt="blog" src="https://dummyimage.com/104x104" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                    <span class="flex-grow flex flex-col pl-4">
-            <span class="title-font font-medium text-gray-900">Holden Caulfield</span>
-            <span class="text-gray-400 text-xs tracking-widest mt-0.5">14 AGUSTUS 2000</span>
-          </span>
-                </a>
-            </div>
-            <div class="p-12 md:w-1/2 flex flex-col items-start">
-                <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4">Pinterest DIY dreamcatcher gentrify single-origin coffee</h2>
-                <p class="leading-relaxed mb-8">Live-edge letterpress cliche, salvia fanny pack humblebrag narwhal portland. VHS man braid palo santo hoodie brunch trust fund. Bitters hashtag waistcoat fashion axe chia unicorn. Plaid fixie chambray 90's, slow-carb etsy tumeric.</p>
-                <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
-                    <a href="#" class="text-indigo-500 inline-flex items-center">Selengkapnya
-                        <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14"></path>
-                            <path d="M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-                <a class="inline-flex items-center">
-                    <img alt="blog" src="https://dummyimage.com/103x103" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                    <span class="flex-grow flex flex-col pl-4">
-            <span class="title-font font-medium text-gray-900">Alper Kamu</span>
-            <span class="text-gray-400 text-xs tracking-widest mt-0.5">23 APRIL 2000</span>
-          </span>
-                </a>
-            </div>
-        </div>
-    </div>
+<div class="container mt-5">
+    <h2 align="center">Search page</h2>
+    <form th:action="@{/search-page}" method="get">
+        <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Judul cerita" size="50" >
+        <button type="submit" class="btn btn-info" >Search</button>
+        <button type="submit" class="btn btn-info" >Reset</button>
+    </form>
+    <table class="table table-bordered table-sm mt-2">
+        <thead>
+        <tr>
+            <th>Judul</th>
+            <th>Isi cerita</th>
+            <th>Date created</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="l : ${list}" th:field="${l}">
+            <td th:text="${l.judulCerita}"></td>
+            <td th:text="${l.isiCerita}"></td>
+            <td th:text="${l.createdAt}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
-</section>
 </body>
 </html>

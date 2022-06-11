@@ -4,8 +4,8 @@ import id.ac.ui.cs.advprog.finalprojectc1.core.email.EmailSender;
 import id.ac.ui.cs.advprog.finalprojectc1.core.appuser.AppUser;
 import id.ac.ui.cs.advprog.finalprojectc1.core.appuser.AppUserRole;
 import id.ac.ui.cs.advprog.finalprojectc1.core.registration.RegistrationRequest;
-import id.ac.ui.cs.advprog.finalprojectc1.core.token.ConfirmationToken;
 import lombok.AllArgsConstructor;
+import lombok.Synchronized;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,19 +17,15 @@ import java.time.LocalDateTime;
 public class RegistrationService {
 
     private final AppUserService appUserService;
-    private final EmailValidatorService emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
+    private static final String EMAILNEWLINE= "        \n";
+    private static final String EMAILTABLENEWLINE= "    </tr>\n";
+    private static final String EMAILNEWCOLUMN = "      </td>\n";
+    private static final String EMAILNEWTABLE = "    <tbody><tr>\n";
 
-
+    @Synchronized
     public String register(RegistrationRequest request) {
-        boolean isValidEmail = emailValidator.
-                test(request.getEmail());
-
-        if (!isValidEmail) {
-            throw new IllegalStateException("email not valid");
-        }
-
         String token = appUserService.signUpUser(
                 new AppUser(
                         request.getFullname(),
@@ -51,7 +47,7 @@ public class RegistrationService {
 
     @Transactional
     public String confirmToken(String token) {
-        ConfirmationToken confirmationToken = confirmationTokenService
+        var confirmationToken = confirmationTokenService
                 .getToken(token)
                 .orElseThrow(() ->
                         new IllegalStateException("token not found"));
@@ -73,14 +69,15 @@ public class RegistrationService {
     }
 
     private String buildEmail(String name, String link) {
+
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +
                 "<span style=\"display:none;font-size:1px;color:#fff;max-height:0\"></span>\n" +
                 "\n" +
                 "  <table role=\"presentation\" width=\"100%\" style=\"border-collapse:collapse;min-width:100%;width:100%!important\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
-                "    <tbody><tr>\n" +
+                EMAILNEWTABLE +
                 "      <td width=\"100%\" height=\"53\" bgcolor=\"#0b0c0c\">\n" +
-                "        \n" +
+                EMAILNEWLINE +
                 "        <table role=\"presentation\" width=\"100%\" style=\"border-collapse:collapse;max-width:580px\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\">\n" +
                 "          <tbody><tr>\n" +
                 "            <td width=\"70\" bgcolor=\"#0b0c0c\" valign=\"middle\">\n" +
@@ -98,44 +95,44 @@ public class RegistrationService {
                 "            </td>\n" +
                 "          </tr>\n" +
                 "        </tbody></table>\n" +
-                "        \n" +
-                "      </td>\n" +
-                "    </tr>\n" +
+                EMAILNEWLINE +
+                EMAILNEWCOLUMN +
+                EMAILTABLENEWLINE +
                 "  </tbody></table>\n" +
                 "  <table role=\"presentation\" class=\"m_-6186904992287805515content\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse;max-width:580px;width:100%!important\" width=\"100%\">\n" +
-                "    <tbody><tr>\n" +
+                EMAILNEWTABLE +
                 "      <td width=\"10\" height=\"10\" valign=\"middle\"></td>\n" +
                 "      <td>\n" +
-                "        \n" +
+                EMAILNEWLINE +
                 "                <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse\">\n" +
                 "                  <tbody><tr>\n" +
                 "                    <td bgcolor=\"#1D70B8\" width=\"100%\" height=\"10\"></td>\n" +
                 "                  </tr>\n" +
                 "                </tbody></table>\n" +
-                "        \n" +
-                "      </td>\n" +
+                EMAILNEWLINE +
+                EMAILNEWCOLUMN +
                 "      <td width=\"10\" valign=\"middle\" height=\"10\"></td>\n" +
-                "    </tr>\n" +
+                EMAILTABLENEWLINE +
                 "  </tbody></table>\n" +
                 "\n" +
                 "\n" +
                 "\n" +
                 "  <table role=\"presentation\" class=\"m_-6186904992287805515content\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse;max-width:580px;width:100%!important\" width=\"100%\">\n" +
-                "    <tbody><tr>\n" +
+                EMAILNEWTABLE +
                 "      <td height=\"30\"><br></td>\n" +
-                "    </tr>\n" +
+                EMAILTABLENEWLINE +
                 "    <tr>\n" +
                 "      <td width=\"10\" valign=\"middle\"><br></td>\n" +
                 "      <td style=\"font-family:Helvetica,Arial,sans-serif;font-size:19px;line-height:1.315789474;max-width:560px\">\n" +
-                "        \n" +
+                EMAILNEWLINE +
                 "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hi " + name + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> Thank you for registering. Please click on the below link to activate your account: </p><blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\"><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> <a href=\"" + link + "\">Activate Now</a> </p></blockquote>\n Link will expire in 15 minutes. <p>See you soon</p>" +
-                "        \n" +
-                "      </td>\n" +
+                EMAILNEWLINE +
+                EMAILNEWCOLUMN +
                 "      <td width=\"10\" valign=\"middle\"><br></td>\n" +
-                "    </tr>\n" +
+                EMAILTABLENEWLINE +
                 "    <tr>\n" +
                 "      <td height=\"30\"><br></td>\n" +
-                "    </tr>\n" +
+                EMAILTABLENEWLINE +
                 "  </tbody></table><div class=\"yj6qo\"></div><div class=\"adL\">\n" +
                 "\n" +
                 "</div></div>";
