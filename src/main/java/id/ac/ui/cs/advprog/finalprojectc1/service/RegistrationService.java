@@ -5,6 +5,7 @@ import id.ac.ui.cs.advprog.finalprojectc1.core.appuser.AppUser;
 import id.ac.ui.cs.advprog.finalprojectc1.core.appuser.AppUserRole;
 import id.ac.ui.cs.advprog.finalprojectc1.core.registration.RegistrationRequest;
 import lombok.AllArgsConstructor;
+import lombok.Synchronized;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +17,6 @@ import java.time.LocalDateTime;
 public class RegistrationService {
 
     private final AppUserService appUserService;
-    private final EmailValidatorService emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
     private static final String EMAILNEWLINE= "        \n";
@@ -24,15 +24,8 @@ public class RegistrationService {
     private static final String EMAILNEWCOLUMN = "      </td>\n";
     private static final String EMAILNEWTABLE = "    <tbody><tr>\n";
 
-
+    @Synchronized
     public String register(RegistrationRequest request) {
-        boolean isValidEmail = emailValidator.
-                test(request.getEmail());
-
-        if (!isValidEmail) {
-            throw new IllegalStateException("email not valid");
-        }
-
         String token = appUserService.signUpUser(
                 new AppUser(
                         request.getFullname(),
