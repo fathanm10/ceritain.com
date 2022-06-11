@@ -31,6 +31,8 @@
                                     <div class="col-span-6 sm:col-span-3">
                                         <label th:for="first-name" class="block text-sm font-medium text-gray-700">First Name</label>
                                         <span th:for="first-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getFirstName()}"></span>
+<!--                                        <span th:if="${userLogin.getFirstName() != null}" th:for="first-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getFirstName()}"></span>-->
+<!--                                        <span th:unless="${userLogin.getFirstName() != null}" th:for="first-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md"> [Belum Terisi] </span>-->
                                         <!--                                        <span th:if="${user == null}" th:for="first-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${userLogin.getFirstName()}"></span>-->
                                         <!--                                        <span th:unless="${user == null}" th:for="first-name" class="inline-flex items-center mt-1 px-3 rounded-md border border-gray-300 bg-gray-50 text-gray-500 hover:bg-gray-200 text-sm shadow-md" th:text="${user.firstName}"></span>-->
                                     </div>
