@@ -1,4 +1,4 @@
-image: gradle:7.4-jdk-11-alpine
+image: gradle:7.4-jdk-11
 
 stages:
   - deploy
