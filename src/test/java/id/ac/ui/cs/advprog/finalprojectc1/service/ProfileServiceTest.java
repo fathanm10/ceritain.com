@@ -46,6 +46,7 @@ public class ProfileServiceTest {
     private final String email = "email@gmail.com";
     private final String username = "username";
     private final String bio = "ini bio";
+    private final String url = "http://ceritain.com/@username";
     private final String linkPhoto = "https://commons.wikimedia.org/wiki/File:Profile_avatar_placeholder_large.png";
 
     private final Profile mockProfile = new Profile();
@@ -55,6 +56,7 @@ public class ProfileServiceTest {
     private final String emailF = "email1@gmail.com";
     private final String usernameF = "username1";
     private final String bioF = "ini bio1";
+    private final String urlF = "http://ceritain.com/@username1";
     private final String linkPhotoF = "https://commons.wikimedia.org/wiki/File:Profile_avatar_placeholder_large1.png";
 
     Profile mockProfileF = new Profile();
@@ -71,16 +73,18 @@ public class ProfileServiceTest {
         mockProfile.setEmail(email);
         mockProfile.setUsername(username);
         mockProfile.setBio(bio);
-        mockProfile.setUrl(linkPhoto);
+        mockProfile.setUrl(url);
+        mockProfile.setLinkPhoto(linkPhoto);
 
         mockListProfile.add(mockProfile);
 
-        mockProfileF.setFirstName(firstName);
-        mockProfileF.setLastName(lastName);
-        mockProfileF.setEmail(email);
-        mockProfileF.setUsername(username);
-        mockProfileF.setBio(bio);
-        mockProfileF.setUrl(linkPhoto);
+        mockProfileF.setFirstName(firstNameF);
+        mockProfileF.setLastName(lastNameF);
+        mockProfileF.setEmail(emailF);
+        mockProfileF.setUsername(usernameF);
+        mockProfileF.setBio(bioF);
+        mockProfileF.setUrl(urlF);
+        mockProfileF.setLinkPhoto(linkPhotoF);
     }
 
     @Test
@@ -101,16 +105,14 @@ public class ProfileServiceTest {
         profileService.getProfileByEmail(email);
         verify(profileRepository).findAll();
         assertEquals(profileService.getProfileByEmail(email),mockProfile);
-        assertEquals(profileService.getProfileByEmail(email),mockProfileF);
+        assertNotEquals(profileService.getProfileByEmail(email),mockProfileF);
     }
 
     @Test
-    void testGetEmailWIthoutInputEmail(){
-        when(profileService.getAppuser().getEmail()).thenReturn(email);
-        profileService.getProfileByEmail();
-        verify(profileService).getProfileByEmail(email);
-        verify(profileService).getAppuser();
-        assertEquals(profileService.getProfileByEmail(), email);
-        assertEquals(profileService.getProfileByEmail(), emailF);
+    void testSaveProfileToDB(){
+        when(profileRepository.findAll()).thenReturn(mockListProfile);
+        Profile p = profileService.saveProfileToDB(firstName, lastName, email, username, bio, linkPhoto);
+        assertEquals(p, mockProfile);
+        assertNotEquals(p, mockProfileF);
     }
 }
