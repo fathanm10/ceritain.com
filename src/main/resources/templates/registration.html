@@ -28,6 +28,16 @@
 				<div class="alert alert-info">Registration Successfull, Please Check Your Email</div>
 			</div>
 
+			<!-- error message1 -->
+			<div th:if="${param.error1}">
+				<div class="alert alert-danger">Username Is Already Taken.</div>
+			</div>
+
+			<!-- error message2 -->
+			<div th:if="${param.error2}">
+				<div class="alert alert-danger">Email Is Already Registered</div>
+			</div>
+
 			<form th:action="@{/registration}" method="post" th:object="${registerReq}">
 
 				<div class="form-group">
