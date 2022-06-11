@@ -26,40 +26,24 @@ public class UserProfileController {
 
     @GetMapping(value = "")
     public String homepage(Model model){
-//        model.addAttribute("username", profileService.getUsernameLogin());
-        Profile profile = profileService.getProfileByEmail(profileService.getAppuser().getEmail());
+        Profile profile = profileService.getProfileByEmail();
 
-        if (profile == null) {
-            profile = profileService.saveNewProfile(profileService.getAppuser().getUsername(), profileService.getAppuser().getFullname(), profileService.getAppuser().getName());
-        } else{
-
-        }
+        if (profile == null)
+            profile = profileService.saveNewProfile();
         model.addAttribute("userLogin", profile);
-//        model.addAttribute("userLogin", profileService.getAppuser());
-//        model.addAttribute("userName", profileService.getAppuser().getName());
-//        model.addAttribute("userEmail",profileService.getAppuser().getEmail());
-//        model.addAttribute("userFullName", profileService.getAppuser().getFullname());
-//        model.addAttribute("profile", new Profile());
-        return PROFILE;
-    }
-
-    @GetMapping(value = "/{id}")
-    public String profilePage(@PathVariable int id, Model model){
-        model.addAttribute("user", profileService.getProfileById(id));
         return PROFILE;
     }
 
     @PostMapping(value = "")
     public String createProfile(Model model){
-        model.addAttribute("userLoggedIn", profileService.getProfileByEmail(profileService.getAppuser().getEmail()));
+        model.addAttribute("userLoggedIn", profileService.getProfileByEmail());
 
         return "redirect:/profile/edit";
     }
 
     @GetMapping(value = "/edit")
     public String editProfile(Model model){
-        model.addAttribute("userLoggedIn", profileService.getAppuser());
-        model.addAttribute(PROFILE, profileService.getProfileByEmail(profileService.getAppuser().getEmail()));
+        model.addAttribute(PROFILE, profileService.getProfileByEmail());
         return "edit_profile";
     }
 
