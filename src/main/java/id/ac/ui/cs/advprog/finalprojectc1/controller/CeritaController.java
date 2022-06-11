@@ -44,15 +44,26 @@ public class CeritaController {
 
     @PostMapping(value = "/add-cerita")
     public String createCerita(@RequestParam String judulCerita, @RequestParam String isiCerita) {
-        ceritaService.createCerita(judulCerita, isiCerita);
-        return "redirect:/cerita";
+        try {
+            ceritaService.createCerita(judulCerita, isiCerita);
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            return "redirect:/cerita";
+        }
+
     }
 
     @GetMapping(value = "delete-cerita/{ceritaId}")
     public String deleteCerita(@PathVariable String ceritaId) {
-        ceritaService.deleteCeritaFromAllReadingList(ceritaId);
-        ceritaService.deleteCerita(ceritaId);
-        return "redirect:/cerita";
+        try {
+            ceritaService.deleteCeritaFromAllReadingList(ceritaId);
+            ceritaService.deleteCerita(ceritaId);
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            return "redirect:/cerita";
+        }
     }
 
     @GetMapping(value = "/edit-cerita/{ceritaId}")
@@ -66,7 +77,7 @@ public class CeritaController {
     public String updateCerita(@PathVariable String ceritaId,
                                @RequestParam String judulCerita,
                                @RequestParam String isiCerita) {
-        ceritaService.updateCerita(ceritaId, Optional.ofNullable(judulCerita), Optional.ofNullable(isiCerita));
+        ceritaService.updateCerita(ceritaId, judulCerita, isiCerita);
         return "redirect:/cerita/" + ceritaId;
     }
 
