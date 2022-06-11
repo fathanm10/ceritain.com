@@ -124,8 +124,8 @@ class UserProfileControllerTest {
                 .andExpect(model().attributeExists("profile"))
                 .andExpect(view().name("edit_profile"));
 
-        verify(profileService, times(1)).getProfileByEmail(email);
-        verify(profileService, times(0)).getProfileByEmail();
+        verify(profileService, times(1)).getProfileByEmail();
+        verify(profileService, times(0)).getProfileByEmail(email);
         verify(profileService, times(0)).saveNewProfile();
         verify(profileService, times(0)).saveProfileToDB(firstName, lastName, email, username, bio, linkPhoto);
         verify(profileService, times(0)).getAppuser();
