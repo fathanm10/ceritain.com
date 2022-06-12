@@ -1,23 +1,48 @@
 # Final Project C1
 
+[![coverage report](https://gitlab.cs.ui.ac.id/AdvProg/reguler-2022/student/kelas-c-blended/2006595854-Dzikri-Qalam-Hatorangan/final-project-c1/badges/staging/coverage.svg)](https://gitlab.cs.ui.ac.id/AdvProg/reguler-2022/student/kelas-c-blended/2006595854-Dzikri-Qalam-Hatorangan/final-project-c1/-/commits/staging)
+
 ## Deployed Apps
 * main: https://ap2022-c1-master.herokuapp.com/
 * staging: https://ap2022-c1-staging.herokuapp.com/
 
-## Sprint X
+## Sprint 1
 
-This is release notes.
+Pada sprint ini kami melakukan set-up repositori, database,
+fitur autentikasi, serta menyiapkan frontend untuk fitur-fitur lainnya.
 
-### *Features that will be released*
+### *Features released*
 
-* Feature 1
-* Feature 2
-* Feature .
-* Feature N
+* Autentikasi
+
+## Sprint 2
+
+Pada sprint ini kami mengimplementasikan backend untuk setiap
+fitur selain autentikasi, serta melakukan beberapa perubahan pada backend.
+
+### *Features released*
+
+* Cerita
+* Reading List
+* Profile
 
 ### *Changes*
 
-* Change 1
-* Change 2
-* Change .
-* Change M
+* Menambahkan CSRF protection pada autentikasi
+* Merapikan tampilan frontend
+* Mengintegrasikan cerita dengan reading list
+
+## Sprint 3
+
+Pada sprint ini kami membuat navbar, melengkapi coverage, refactor untuk
+menerapkan clean code, serta mengintegrasikan search cerita.
+
+### *Features released*
+
+* Search cerita
+
+### *Changes*
+
+* Membuat navbar untuk navigasi antar fitur
+* Membuat unit test di setiap fitur
+* Menerapkan clean code dengan melakukan refactoring di setiap fitur

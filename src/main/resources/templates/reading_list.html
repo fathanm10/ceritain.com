@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Reading List UI Prototype</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header th:replace="fragments/navbar :: navbar" class="p-5"></header>
+    <a th:href="@{/reading-list/create}" class="bg-[#345875] hover:bg-[#0F3B5E] text-white py-2 px-4 rounded">Buat Reading List</a>
+    <h5 class="text-center font-bold text-3xl my-3">All Reading List</h5>
+    <div class="justify-center items-center text-center mx-auto mt-10">
+        <div class="grid grid-cols-4 mx-auto" th:each="readingList : ${allReadingList}">
+            <label class="col-span-3 mx-auto" th:text="${readingList.getJudul()}"></label>
+            <div class="flex justify-center"><a th:href="@{/reading-list/view/{id}(id=${readingList.getId()})}"
+                  class="inline-flex bg-[#614c8b] hover:bg-[#3d3057] text-white py-2 px-4 rounded">Lihat</a></div>
+        </div>
+    </div>
+    <h5 class="text-center font-bold text-3xl my-3">Edit Reading List</h5>
+    <div class="justify-center items-center text-center mx-auto mt-10">
+        <div class="grid grid-cols-4 mx-auto" th:each="readingList : ${allUserReadingList}">
+            <label class="col-span-3 mx-auto" th:text="${readingList.getJudul()}"></label>
+            <div class="flex justify-center"><a th:href="@{/reading-list/edit/{id}(id=${readingList.getId()})}"
+                                                class="inline-flex bg-[#a05b25] hover:bg-[#6d3d19] text-white py-2 px-4 rounded">Edit</a></div>
+        </div>
+    </div>
+    <footer class="p-5"></footer>
+</body>
+
+</html>
