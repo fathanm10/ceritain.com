@@ -5,6 +5,7 @@ import id.ac.ui.cs.advprog.finalprojectc1.core.registration.RegistrationRequest;
 import id.ac.ui.cs.advprog.finalprojectc1.repository.AppUserRepository;
 import id.ac.ui.cs.advprog.finalprojectc1.service.RegistrationService;
 import lombok.AllArgsConstructor;
+import lombok.Synchronized;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class UserRegistrationController {
     public String login() {
         return "login";
     }
-
+    @Synchronized
     @PostMapping("/registration")
     public String register(@Valid RegistrationRequest req) {
         boolean emailExist = appUserRepository.findByEmail(req.getEmail()).isPresent();
