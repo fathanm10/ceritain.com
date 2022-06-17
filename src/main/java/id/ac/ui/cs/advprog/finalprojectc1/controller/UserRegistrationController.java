@@ -23,7 +23,6 @@ public class UserRegistrationController {
     public String login() {
         return "login";
     }
-
     @Synchronized
     @PostMapping("/registration")
     public String register(@Valid RegistrationRequest req) {
@@ -31,8 +30,8 @@ public class UserRegistrationController {
         boolean usernameExist = appUserRepository.findByName(req.getName()).isPresent();
 
         if(emailExist && usernameExist) return  "redirect:/registration?error1&error2";
-        else if (emailExist) return "redirect:/registration?error1";
-        else if (usernameExist) return "redirect:/registration?error2";
+        else if (usernameExist) return "redirect:/registration?error1";
+        else if (emailExist) return "redirect:/registration?error2";
 
         registrationService.register(req);
 

@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
-                .logoutSuccessUrl("/login?logout");
+                .logoutSuccessUrl("/login");
     }
 
     @Override
@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider (){
-        var provider = new DaoAuthenticationProvider();
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(bCryptPasswordEncoder);
         provider.setUserDetailsService(appUserService);
         return provider;
